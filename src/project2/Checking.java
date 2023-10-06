@@ -19,8 +19,5 @@ public class Checking extends Account {
         return MONTHLY_FEE;
     }
 
-    @Override
-    public int compareTo(Account o) {
-        return 0;
-    }
+
 }
