@@ -2,11 +2,16 @@ package project2;
 
 public class AccountDatabase {
     private static final int INCREMENT_AMOUNT = 4;
+    private static final int INITIAL_CAPACITY = 4;
     private Account[] accounts; //list of various types of accounts
     private int numAcct; //number of accounts in the array
     private static final int NOT_FOUND = -1;
-    private static final int ZERO = 0;
     private static final double MIN_BALANCE_FEE_WAIVED = 2000;
+
+    public AccountDatabase(){
+        accounts = new Account[INITIAL_CAPACITY];
+        numAcct = 0;
+    }
     private int find(Account account) {
         int index = NOT_FOUND;
         for (int i = 0; i < numAcct; i++) {
@@ -58,7 +63,7 @@ public class AccountDatabase {
             return false;
         }
         Account acct = accounts[index];
-        if (acct.balance < ZERO) {
+        if (acct.balance < 0) {
             return false;
         }
         if (acct instanceof MoneyMarket) {
