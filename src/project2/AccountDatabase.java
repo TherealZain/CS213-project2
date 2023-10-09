@@ -6,6 +6,7 @@ public class AccountDatabase {
     private int numAcct; //number of accounts in the array
     private static final int NOT_FOUND = -1;
     private static final int ZERO = 0;
+    private static final double MIN_BALANCE_FEE_WAIVED = 2000;
     private int find(Account account) {
         int index = NOT_FOUND;
         for (int i = 0; i < numAcct; i++) {
@@ -63,7 +64,7 @@ public class AccountDatabase {
         if (acct instanceof MoneyMarket) {
             MoneyMarket mmAccount = (MoneyMarket) acct;
             mmAccount.incrementWithdrawals();
-            if (mmAccount.balance < 2000) {
+            if (mmAccount.balance < MIN_BALANCE_FEE_WAIVED) {
                 mmAccount.isLoyal = false;
             }
           accounts[index] = mmAccount;
