@@ -13,11 +13,6 @@ public abstract class Account implements Comparable<Account> {
         this.balance = balance;
     }
 
-    @Override
-    public int compareTo(Account o) {
-        return 0;
-    }
-
 
 }
 

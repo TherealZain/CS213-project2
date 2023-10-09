@@ -7,6 +7,12 @@ public class Savings extends Account{
     private static final double MONTHLY_FEE = 25.0;
     private static final double MIN_BALANCE_FEE_WAIVED = 500;
     private static final int NUM_MONTHS = 12;
+
+    public Savings(Profile holder, double balance, boolean isLoyal) {
+        super(holder, balance);
+        this.isLoyal = isLoyal;
+    }
+
     @Override
     public double monthlyInterest() {
         if(isLoyal){
