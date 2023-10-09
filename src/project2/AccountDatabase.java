@@ -14,7 +14,7 @@ public class AccountDatabase {
             }
         }
         return index;
-    } //search for an account in the array
+    }
     private void grow(){
         Account[] copy = new Account[numAcct + INCREMENT_AMOUNT];
         for(int i = 0; i < numAcct; i++){
@@ -39,11 +39,36 @@ public class AccountDatabase {
         return true;
     }
     public boolean close(Account account){
+        int removeIndex = find(account);
+        if (removeIndex != NOT_FOUND) {
+            for (int i = removeIndex; i < numAcct - 1; i++) {
+                accounts[i] = accounts[i + 1];
+            }
+            numAcct--;
+            accounts[numAcct] = null;
+            return true;
+        }
         return false;
-    } //remove the given account
-    //NEED TO CHECK TRANSACTION MANAGER IF ACCOUNT IS CONTAINED
+    }
+
     public boolean withdraw(Account account){
-        return account.balance < ZERO;
+        int index = find(account);
+        if (index == NOT_FOUND) {
+            return false;
+        }
+        Account acct = accounts[index];
+        if (acct.balance < ZERO) {
+            return false;
+        }
+        if (acct instanceof MoneyMarket) {
+            MoneyMarket mmAccount = (MoneyMarket) acct;
+            mmAccount.incrementWithdrawals();
+            if (mmAccount.balance < 2000) {
+                mmAccount.isLoyal = false;
+            }
+          accounts[index] = mmAccount;
+        }
+        return true;
     }
 
     public void deposit(Account account){}

@@ -10,9 +10,16 @@ public class MoneyMarket extends Savings{
     private static final int MIN_WITHDRAWALS_ALLOWED = 3;
     private static final int NUM_MONTHS = 12;
 
-    public MoneyMarket() {
-        this.isLoyal = true; // set to loyal by default
+
+
+    public MoneyMarket(Profile holder, double balance, boolean isLoyal) {
+        super(holder, balance);
+        isLoyal = true;
+        this.isLoyal = isLoyal;
+
     }
+
+
     @Override
     public double monthlyInterest() {
         if(isLoyal){
@@ -34,5 +41,9 @@ public class MoneyMarket extends Savings{
         }
 
         return MONTHLY_FEE;
+    }
+
+    public void incrementWithdrawals(){
+        withdrawal++;
     }
 }
