@@ -26,10 +26,11 @@ public class CollegeChecking extends Checking{
 
     @Override
     public int compareTo(Account o){
-        if(super.compareTo(o) != 0){
-
+        int superComparison = super.compareTo(o);
+        if(superComparison != 0){
+            return superComparison;
         }
-        return 0;
+        return this.campus.compareTo(((CollegeChecking) o).campus);
     }
 
 }
