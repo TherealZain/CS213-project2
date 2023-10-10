@@ -28,6 +28,22 @@ public class MoneyMarket extends Savings{
         return withdrawal == mmAccount.withdrawal;
     }
 
+    @Override
+    public int compareTo(Account o) {
+        int superComparison= super.compareTo(o);
+        if(superComparison != 0){
+            return superComparison;
+        }
+        MoneyMarket mmAccount = (MoneyMarket) o;
+        if(this.withdrawal < mmAccount.withdrawal){
+            return -1;
+        }
+        if(this.withdrawal > mmAccount.withdrawal){
+            return 1;
+        }
+        return 0;
+    }
+
 
     @Override
     public double monthlyInterest() {

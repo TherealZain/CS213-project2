@@ -22,6 +22,34 @@ public class Savings extends Account{
     }
 
     @Override
+    public int compareTo(Account o) {
+        int typeComparison =this.getClass().getSimpleName()
+                .compareTo(o.getClass().getSimpleName());
+        if(typeComparison > 0){
+            return 1;
+        }
+        if(typeComparison < 0){
+            return -1;
+        }
+        if(this.holder.compareTo(o.holder) > 0){
+            return 1;
+        }
+        if(this.holder.compareTo(o.holder) < 0){
+            return -1;
+        }
+        if(this.balance < o.balance) {
+            return -1;
+        }
+        if (this.balance > o.balance) {
+            return 1;
+        }
+
+        Savings savings = (Savings) o;
+
+        return Boolean.compare(this.isLoyal, savings.isLoyal);
+    }
+
+    @Override
     public double monthlyInterest() {
         if(isLoyal){
             return balance*(LOYAL_INTEREST_RATE/NUM_MONTHS);
@@ -37,8 +65,5 @@ public class Savings extends Account{
         return MONTHLY_FEE;
     }
 
-    @Override
-    public int compareTo(Account o) {
-        return 0;
-    }
+
 }
