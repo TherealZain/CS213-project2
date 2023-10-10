@@ -80,7 +80,11 @@ public class AccountDatabase {
     }
 
     public void deposit(Account account){
-        
+        int index = find(account);
+        if (index == NOT_FOUND) {
+            return;
+        }
+        Account acct = accounts[index];
     }
     public void printSorted(){ //sort by account type and profile
 
