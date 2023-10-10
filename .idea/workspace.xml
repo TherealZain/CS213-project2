@@ -5,8 +5,14 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="ed48aa7f-7c40-4f53-9b16-e472cc288262" name="Changes" comment="changes">
-      <change beforePath="$PROJECT_DIR$/src/project2/Account.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/project2/Account.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/project2/AccountDatabase.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/project2/AccountDatabase.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/project2/MoneyMarket.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/project2/MoneyMarket.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/project2/Profile.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/project2/Profile.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/project2/RunProject2.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/project2/RunProject2.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/project2/Savings.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/project2/Savings.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/project2/TransactionManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/project2/TransactionManager.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -24,12 +30,12 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
-  <component name="GitHubPullRequestSearchHistory"><![CDATA[{
-  "lastFilter": {
-    "state": "OPEN",
-    "assignee": "TherealZain"
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;,
+    &quot;assignee&quot;: &quot;TherealZain&quot;
   }
-}]]></component>
+}</component>
   <component name="GithubPullRequestsUISettings">
     <option name="selectedUrlAndAccountId">
       <UrlAndAccount>
@@ -38,22 +44,22 @@
       </UrlAndAccount>
     </option>
   </component>
-  <component name="ProjectColorInfo"><![CDATA[{
-  "associatedIndex": 7
-}]]></component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 7
+}</component>
   <component name="ProjectId" id="2WJ2WbvWiSgRa1qJ12gf5ey7ZEn" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "git-widget-placeholder": "master"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;master&quot;
   }
-}]]></component>
+}</component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">

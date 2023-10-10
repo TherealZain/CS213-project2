@@ -3,7 +3,7 @@ package project2;
 public class MoneyMarket extends Savings{
     private int withdrawal; //number of withdrawals
     private static final double INTEREST_RATE = 0.0450;
-    private static final double LOYAL_INTEREST_FEE = 0.0475;
+    private static final double LOYAL_INTEREST_RATE = 0.0475;
     private static final double MIN_BALANCE_FEE_WAIVED = 2000;
     private static final double MONTHLY_FEE = 25.0;
     private static final double WITHDRAWALS_OVER_MIN_FEE = 10.0;
@@ -23,7 +23,7 @@ public class MoneyMarket extends Savings{
     @Override
     public double monthlyInterest() {
         if(isLoyal){
-            return balance*LOYAL_INTEREST_FEE;
+            return balance*(LOYAL_INTEREST_RATE/NUM_MONTHS);
         }
         return balance*(INTEREST_RATE/NUM_MONTHS);
     }

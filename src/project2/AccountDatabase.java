@@ -6,11 +6,13 @@ public class AccountDatabase {
     private Account[] accounts; //list of various types of accounts
     private int numAcct; //number of accounts in the array
     private static final int NOT_FOUND = -1;
+
+    private static final int STARTING_NUM_ACCT = 0;
     private static final double MIN_BALANCE_FEE_WAIVED = 2000;
 
     public AccountDatabase(){
         accounts = new Account[INITIAL_CAPACITY];
-        numAcct = 0;
+        numAcct = STARTING_NUM_ACCT;
     }
     private int find(Account account) {
         int index = NOT_FOUND;
@@ -77,8 +79,16 @@ public class AccountDatabase {
         return true;
     }
 
-    public void deposit(Account account){}
-    public void printSorted(){} //sort by account type and profile
-    public void printFeesAndInterests(){} //calculate interests/fees
-    public void printUpdatedBalances(){} //apply the interests/fees
+    public void deposit(Account account){
+        
+    }
+    public void printSorted(){ //sort by account type and profile
+
+    }
+    public void printFeesAndInterests(){ //calculate interests/fees
+
+    }
+    public void printUpdatedBalances(){ //apply the interests/fees
+
+    }
 }

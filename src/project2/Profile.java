@@ -12,10 +12,10 @@ private Date dob;
     }
     @Override
     public int compareTo(Profile o) {
-        if(this.fname.compareTo(o.fname) > 0){
+        if(this.lname.compareTo(o.lname) > 0){
             return 1;
         }
-        if(this.lname.compareTo(o.lname) < 0){
+        if(this.fname.compareTo(o.fname) < 0){
             return -1;
         }
         if (this.dob.compareTo(o.dob) > 0) {
