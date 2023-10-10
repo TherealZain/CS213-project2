@@ -24,9 +24,24 @@ public class Checking extends Account {
         return MONTHLY_FEE;
     }
 
+    @Override
+    public boolean equals(Object obj){
+        if (this == obj) return true;
+        if (obj == null || getClass() != obj.getClass()) return false;
+        Checking checking = (Checking) obj;
+        return checking.balance == balance || checking.holder.equals(holder);
+    }
+
 
     @Override
     public int compareTo(Account o) {
+        int typeComparison =this.getClass().getSimpleName().compareTo(o.getClass().getSimpleName());
+        if(typeComparison > 0){
+            return 1;
+        }
+        if(typeComparison < 0){
+            return -1;
+        }
         if(this.holder.compareTo(o.holder) > 0){
             return 1;
         }

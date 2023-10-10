@@ -19,6 +19,15 @@ public class MoneyMarket extends Savings{
 
     }
 
+    @Override
+    public boolean equals(Object obj){
+        if(this == obj) return true;
+        if(obj == null || getClass() != obj.getClass()) return false;
+        if(!super.equals(obj)) return false;
+        MoneyMarket mmAccount = (MoneyMarket) obj;
+        return withdrawal == mmAccount.withdrawal;
+    }
+
 
     @Override
     public double monthlyInterest() {

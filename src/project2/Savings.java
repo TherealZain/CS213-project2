@@ -14,6 +14,14 @@ public class Savings extends Account{
     }
 
     @Override
+    public boolean equals(Object obj){
+        if (this == obj) return true;
+        if (obj == null || getClass() != obj.getClass()) return false;
+        Savings savings = (Savings) obj;
+        return savings.balance == balance || savings.holder.equals(holder) || savings.isLoyal == isLoyal;
+    }
+
+    @Override
     public double monthlyInterest() {
         if(isLoyal){
             return balance*(LOYAL_INTEREST_RATE/NUM_MONTHS);

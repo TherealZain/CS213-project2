@@ -9,9 +9,27 @@ public class CollegeChecking extends Checking{
         this.campus = campus;
     }
 
+
     @Override
     public double monthlyFee() {
         return 0.0; // No monthly fee for College Checking
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) return true;
+        if (obj == null || getClass() != obj.getClass()) return false;
+        if (!super.equals(obj)) return false;
+        CollegeChecking that = (CollegeChecking) obj;
+        return that.campus == campus;
+    }
+
+    @Override
+    public int compareTo(Account o){
+        if(super.compareTo(o) != 0){
+
+        }
+        return 0;
     }
 
 }
