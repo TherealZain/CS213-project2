@@ -16,6 +16,22 @@ public class CollegeChecking extends Checking{
     }
 
     @Override
+    public String toString() {
+        return String.format("%s::%s",
+                super.toString(),
+                campus.toString());
+    }
+
+    public String stringWithFees(){
+        String feeStr = String.format("$%.2f", monthlyFee());
+        String interestStr = String.format("$%.2f", monthlyInterest());
+        String balanceStr = String.format("$%,.2f", balance);
+        return String.format("College Checking::%s %s %s::Balance %s::%s::fee %s::monthly interest %s",
+                holder.getFname(), holder.getLname(), holder.getDob().dateString(),
+                balanceStr, campus, feeStr, interestStr);
+    }
+
+    @Override
     public boolean equals(Object obj) {
         if (this == obj) return true;
         if (obj == null || getClass() != obj.getClass()) return false;

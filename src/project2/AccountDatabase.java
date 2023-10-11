@@ -79,6 +79,23 @@ public class AccountDatabase {
         return true;
     }
 
+    private void selectionSortAccountType() {
+        int n = numAcct;
+
+        for (int i = 0; i < n-1; i++) {
+            int minIdx = i;
+            for (int j = i+1; j < n; j++) {
+                if (accounts[j].compareTo(accounts[minIdx]) < 0) {
+                    minIdx = j;
+                }
+            }
+
+            Account temp = accounts[minIdx];
+            accounts[minIdx] = accounts[i];
+            accounts[i] = temp;
+        }
+    }
+
     public void deposit(Account account){
         int index = find(account);
         if (index == NOT_FOUND) {
@@ -86,10 +103,18 @@ public class AccountDatabase {
         }
         Account acct = accounts[index];
     }
-    public void printSorted(){ //sort by account type and profile
+    public void printSorted(){
+        selectionSortAccountType();
+        for (int i = 0; i < numAcct; i++) {
+            System.out.println(accounts[i].toString());
+        }
 
     }
     public void printFeesAndInterests(){ //calculate interests/fees
+        selectionSortAccountType();
+        for(int i = 0; i< numAcct; i++){
+            System.out.println(accounts[i].stringWithFees());
+        }
 
     }
     public void printUpdatedBalances(){ //apply the interests/fees

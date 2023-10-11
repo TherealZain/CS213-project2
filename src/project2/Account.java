@@ -13,6 +13,7 @@ public abstract class Account implements Comparable<Account> {
         this.balance = balance;
     }
 
+    public abstract String stringWithFees();
 
 }
 

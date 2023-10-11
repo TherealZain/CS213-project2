@@ -14,6 +14,27 @@ public class Savings extends Account{
     }
 
     @Override
+    public String toString() {
+        String loyalString = isLoyal ? "::is loyal" : "";
+        return String.format("%s::%s %s %s::Balance $%,.2f%s",
+                getClass().getSimpleName(),
+                holder.getFname(),
+                holder.getLname(),
+                holder.getDob().dateString(),
+                balance,
+                loyalString);
+    }
+    public String stringWithFees(){
+        String feeStr = String.format("$%.2f", monthlyFee());
+        String interestStr = String.format("$%.2f", monthlyInterest());
+        String balanceStr = String.format("$%,.2f", balance);
+        String loyalty = isLoyal ? "::is loyal" : "";
+        return String.format("Savings::%s %s %s::Balance %s%s::fee %s::monthly interest %s",
+                holder.getFname(), holder.getLname(), holder.getDob().dateString(),
+                balanceStr, loyalty, feeStr, interestStr);
+    }
+
+    @Override
     public boolean equals(Object obj){
         if (this == obj) return true;
         if (obj == null || getClass() != obj.getClass()) return false;

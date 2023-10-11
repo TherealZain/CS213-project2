@@ -18,6 +18,22 @@ public class MoneyMarket extends Savings{
         this.isLoyal = isLoyal;
 
     }
+    @Override
+    public String toString() {
+        return String.format("%s::Savings::withdrawal: %d",
+                super.toString(),
+                withdrawal);
+    }
+
+    public String stringWithFees(){
+        String feeStr = String.format("$%.2f", monthlyFee());
+        String interestStr = String.format("$%.2f", monthlyInterest());
+        String balanceStr = String.format("$%,.2f", balance);
+        String loyalty = isLoyal ? "::is loyal" : "";
+        return String.format("Money Market::Savings::%s %s %s::Balance %s%s::withdrawal: %d::fee %s::monthly interest %s",
+                holder.getFname(), holder.getLname(), holder.getDob().dateString(),
+                balanceStr, loyalty, withdrawal, feeStr, interestStr);
+    }
 
     @Override
     public boolean equals(Object obj){

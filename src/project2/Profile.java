@@ -10,6 +10,19 @@ private Date dob;
         this.lname = lastName;
         this.dob = dateOfBirth;
     }
+
+    public String getFname(){
+        return fname;
+    }
+
+    public String getLname() {
+        return lname;
+    }
+
+    public Date getDob() {
+        return dob;
+    }
+
     @Override
     public int compareTo(Profile o) {
         if(this.lname.compareTo(o.lname) > 0){
