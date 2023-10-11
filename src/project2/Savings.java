@@ -44,7 +44,7 @@ public class Savings extends Account{
 
     @Override
     public int compareTo(Account o) {
-        int typeComparison =this.getClass().getSimpleName()
+        int typeComparison = this.getClass().getSimpleName()
                 .compareTo(o.getClass().getSimpleName());
         if(typeComparison > 0){
             return 1;
@@ -86,5 +86,8 @@ public class Savings extends Account{
         return MONTHLY_FEE;
     }
 
+    public void setIsLoyal(boolean isLoyal) {
+        this.isLoyal = isLoyal;
+    }
 
 }

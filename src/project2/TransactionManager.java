@@ -43,6 +43,52 @@ public class TransactionManager {
     }
 
     private void handleOCommand(StringTokenizer tokenizer) {
+        if (tokenizer.countTokens() < 6) {
+            System.out.println("Missing data for opening an account.");
+            return;
+        }
+
+        String accountType = tokenizer.nextToken();
+        String firstName = tokenizer.nextToken();
+        String lastName = tokenizer.nextToken();
+        String dateOfBirth = tokenizer.nextToken();
+        Date dob = parseDate(dateOfBirth);
+        double initialDeposit = Double.parseDouble(tokenizer.nextToken());
+
+        switch (accountType) {
+            case "C" -> {
+                Profile newProfile = new Profile(firstName, lastName, dob);
+                Checking newChecking = new Checking(newProfile, initialDeposit);
+                accountDatabase.open(newChecking);
+            }
+            case "CC" -> {
+                Profile newProfile = new Profile(firstName, lastName, dob);
+                String campusCode = tokenizer.nextToken();
+                Campus campus = Campus.valueOf(campusCode);
+                CollegeChecking newCollegeChecking = new CollegeChecking(newProfile, initialDeposit, campus);
+                accountDatabase.open(newCollegeChecking);
+            }
+            case "S" -> {
+                Profile newProfile = new Profile(firstName, lastName, dob);
+                Savings newSavings = new Savings(newProfile, initialDeposit);
+                String loyalty = tokenizer.nextToken();
+                if (loyalty.equals("1")) {
+                    newSavings.setIsLoyal(true);
+                }
+                else if (loyalty.equals("0")) {
+                    newSavings.setIsLoyal(false);
+                }
+                accountDatabase.open(newSavings);
+
+            }
+            case "MM" -> {
+                Profile newProfile = new Profile(firstName, lastName, dob);
+                // valid check >= 2000
+                MoneyMarket newMoneyMarket = new MoneyMarket(newProfile, initialDeposit, true);
+                accountDatabase.open(newMoneyMarket);
+            }
+        }
+
 
     }
 
@@ -69,5 +115,33 @@ public class TransactionManager {
     private void handleUBCommand(StringTokenizer tokenizer) {
 
     }
+
+    private Date parseDate(String dateOfBirth) {
+        String[] dateComponents = dateOfBirth.split("/");
+        if (dateComponents.length == 3) {
+            int year = Integer.parseInt(dateComponents[2]);
+            int month = Integer.parseInt(dateComponents[0]);
+            int day = Integer.parseInt(dateComponents[1]);
+
+            return new Date(year, month, day);
+        }
+        return null;
+    }
+
+    public static boolean isValidCampus(String campusCode) {
+        try {
+            Campus.valueOf(campusCode);
+            return true;
+        } catch (IllegalArgumentException e) {
+            System.out.println("Invalid campus code.");
+            return false;
+        }
+    }
+
+    public static boolean isValidMoneyMarket(String ) {
+
+    }
+
+
 
 }
