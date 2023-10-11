@@ -169,12 +169,13 @@ public class TransactionManager {
         }
         Campus campus = Campus.fromCode(campusCode);
         CollegeChecking newCollegeChecking = new CollegeChecking(newProfile, initialDeposit, campus);
+
         if(accountDatabase.open(newCollegeChecking)){
-            System.out.println(newCollegeChecking.holder.getFname()+" "+
-                     newCollegeChecking.holder.getLname() + " " +
-                    newCollegeChecking.holder.getDob().dateString() + "(CC)" + " opened");
+            System.out.println(firstName+" "+ lastName + " " +
+                    dob.dateString() + "(CC)" + " opened");
+        } else {
+            System.out.println();
         }
-        ;
     }
     public void openSavings(String firstName, String lastName, Date dob,
                             double initialDeposit, StringTokenizer tokenizer) {
