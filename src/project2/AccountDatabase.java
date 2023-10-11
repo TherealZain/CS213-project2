@@ -6,7 +6,6 @@ public class AccountDatabase {
     private Account[] accounts; //list of various types of accounts
     private int numAcct; //number of accounts in the array
     private static final int NOT_FOUND = -1;
-
     private static final int STARTING_NUM_ACCT = 0;
     private static final double MIN_BALANCE_FEE_WAIVED = 2000;
 
@@ -109,14 +108,12 @@ public class AccountDatabase {
         for (int i = 0; i < numAcct; i++) {
             System.out.println(accounts[i].toString());
         }
-
     }
     public void printFeesAndInterests(){ //calculate interests/fees
         selectionSortAccountType();
         for(int i = 0; i< numAcct; i++){
             System.out.println(accounts[i].stringWithFees());
         }
-
     }
     public void printUpdatedBalances(){ //apply the interests/fees
 

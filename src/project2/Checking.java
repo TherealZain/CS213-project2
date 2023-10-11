@@ -10,7 +10,6 @@ public class Checking extends Account {
         super(holder, balance);
     }
 
-
     @Override
     public double monthlyInterest() {
         return balance * (INTEREST_RATE / NUM_MONTHS);
@@ -50,7 +49,6 @@ public class Checking extends Account {
         Checking checking = (Checking) obj;
         return checking.balance == balance || checking.holder.equals(holder);
     }
-
 
     @Override
     public int compareTo(Account o) {
