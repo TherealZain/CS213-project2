@@ -30,7 +30,6 @@ public class TransactionManager {
 
             StringTokenizer tokenizer = new StringTokenizer(command);
             String firstToken = tokenizer.nextToken();
-
             switch (firstToken) {
                 case "Q" -> isRunning = false;
                 case "O" -> handleOCommand(tokenizer);
@@ -59,9 +58,11 @@ public class TransactionManager {
         String dateOfBirth = tokenizer.nextToken();
         Date dob = parseDate(dateOfBirth);
         String initialDepositString = tokenizer.nextToken();
+        double initialDeposit;
         if (isValidInitialDeposit(initialDepositString)) {
-            double initialDeposit = Double.parseDouble(initialDepositString);
-        }
+            initialDeposit = Double.parseDouble(initialDepositString);
+        }else return;
+
         switch (accountType) {
             case "C" -> {
                 openChecking(firstName, lastName, dob, initialDeposit);
@@ -91,17 +92,30 @@ public class TransactionManager {
     }
 
     private void handlePCommand(StringTokenizer tokenizer) {
-        System.out.println("Accounts sorted by account type and profile.");
-        accountDatabase.printSorted();
+        if(!(accountDatabase.isEmpty())) {
+            System.out.println("Accounts sorted by account type and profile.");
+            accountDatabase.printSorted();
+            System.out.println("*end of list.");
+        }else System.out.println("Account Database is empty!");
+
     }
-
     private void handlePICommand(StringTokenizer tokenizer) {
-
+        if(!(accountDatabase.isEmpty())) {
+            System.out.println("*list of accounts with fee and monthly interest");
+            accountDatabase.printFeesAndInterests();
+            System.out.println("*end of list.");
+        }else System.out.println("Account Database is empty!");
     }
 
     private void handleUBCommand(StringTokenizer tokenizer) {
-
+        if(!(accountDatabase.isEmpty())) {
+            System.out.println("*list of accounts with fees and interests applied.");
+            accountDatabase.printUpdatedBalances();
+            System.out.println("*end of list.");
+        }else System.out.println("Account Database is empty!");
     }
+
+
 
     private Date parseDate(String dateOfBirth) {
         String[] dateComponents = dateOfBirth.split("/");
@@ -140,22 +154,30 @@ public class TransactionManager {
         }
     }
 
-    public void openChecking(String firstName, String lastName, Date dob, double initialDeposit) {
+    public void openChecking(String firstName, String lastName, Date dob,
+                             double initialDeposit) {
         Profile newProfile = new Profile(firstName, lastName, dob);
         Checking newChecking = new Checking(newProfile, initialDeposit);
         accountDatabase.open(newChecking);
     }
-    public void openCollegeChecking(String firstName, String lastName, Date dob, double initialDeposit, StringTokenizer tokenizer) {
+    public void openCollegeChecking(String firstName, String lastName, Date dob,
+                                    double initialDeposit, StringTokenizer tokenizer) {
         Profile newProfile = new Profile(firstName, lastName, dob);
         String campusCode = tokenizer.nextToken();
         if (campusCode == null) {
             System.out.println("Missing data for opening an account.");
         }
-        Campus campus = Campus.valueOf(campusCode);
+        Campus campus = Campus.fromCode(campusCode);
         CollegeChecking newCollegeChecking = new CollegeChecking(newProfile, initialDeposit, campus);
-        accountDatabase.open(newCollegeChecking);
+        if(accountDatabase.open(newCollegeChecking)){
+            System.out.println(newCollegeChecking.holder.getFname()+" "+
+                     newCollegeChecking.holder.getLname() + " " +
+                    newCollegeChecking.holder.getDob().dateString() + "(CC)" + " opened");
+        }
+        ;
     }
-    public void openSavings(String firstName, String lastName, Date dob, double initialDeposit, StringTokenizer tokenizer) {
+    public void openSavings(String firstName, String lastName, Date dob,
+                            double initialDeposit, StringTokenizer tokenizer) {
         Profile newProfile = new Profile(firstName, lastName, dob);
         Savings newSavings = new Savings(newProfile, initialDeposit);
         String loyalty = tokenizer.nextToken();
@@ -170,7 +192,8 @@ public class TransactionManager {
         }
         accountDatabase.open(newSavings);
     }
-    public void openMoneyMarket(String firstName, String lastName, Date dob, double initialDeposit) {
+    public void openMoneyMarket(String firstName, String lastName, Date dob,
+                                double initialDeposit) {
         if (initialDeposit < MoneyMarket.MIN_BALANCE_FEE_WAIVED) {
             System.out.println("Minimum of $2000 to open a Money Market account.");
         }

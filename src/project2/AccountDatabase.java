@@ -116,6 +116,14 @@ public class AccountDatabase {
         }
     }
     public void printUpdatedBalances(){ //apply the interests/fees
+        selectionSortAccountType();
+        for(int i = 0; i < numAcct; i++){
+            accounts[i].balance += accounts[i].monthlyInterest();
+            accounts[i].balance -= accounts[i].monthlyFee();
+        }
+    }
 
+    public boolean isEmpty(){
+        return numAcct == 0;
     }
 }
