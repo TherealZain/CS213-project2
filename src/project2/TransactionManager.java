@@ -9,7 +9,7 @@ public class TransactionManager {
     private static final int MIN_TOKENS_O_CC_S = 5;
     private static final String LOYAL = "1";
     private static final String NOT_LOYAL = "0";
-    private static final double ZERO_BALANCE = 0.0;
+    private static final double ZERO_BALANCE = 0;
     private boolean isRunning;
     private AccountDatabase accountDatabase;
 
@@ -27,7 +27,6 @@ public class TransactionManager {
             if (command.isEmpty()) {
                 continue;
             }
-
             StringTokenizer tokenizer = new StringTokenizer(command);
             String firstToken = tokenizer.nextToken();
             switch (firstToken) {
@@ -64,18 +63,10 @@ public class TransactionManager {
         }else return;
 
         switch (accountType) {
-            case "C" -> {
-                openChecking(firstName, lastName, dob, initialDeposit);
-            }
-            case "CC" -> {
-                openCollegeChecking(firstName, lastName, dob, initialDeposit, tokenizer);
-            }
-            case "S" -> {
-                openSavings(firstName, lastName, dob, initialDeposit, tokenizer);
-            }
-            case "MM" -> {
-                openMoneyMarket(firstName, lastName, dob, initialDeposit);
-            }
+            case "C" -> openChecking(firstName, lastName, dob, initialDeposit);
+            case "CC" -> openCollegeChecking(firstName, lastName, dob, initialDeposit, tokenizer);
+            case "S" -> openSavings(firstName, lastName, dob, initialDeposit, tokenizer);
+            case "MM" -> openMoneyMarket(firstName, lastName, dob, initialDeposit);
         }
     }
 
@@ -158,7 +149,11 @@ public class TransactionManager {
                              double initialDeposit) {
         Profile newProfile = new Profile(firstName, lastName, dob);
         Checking newChecking = new Checking(newProfile, initialDeposit);
-        accountDatabase.open(newChecking);
+        // check if CC or C in database
+        if(accountDatabase.open(newChecking)){
+            System.out.println(firstName+" "+ lastName + " " +
+                    dob.dateString() + "(C)" + " opened.");
+        }
     }
     public void openCollegeChecking(String firstName, String lastName, Date dob,
                                     double initialDeposit, StringTokenizer tokenizer) {
@@ -172,9 +167,7 @@ public class TransactionManager {
 
         if(accountDatabase.open(newCollegeChecking)){
             System.out.println(firstName+" "+ lastName + " " +
-                    dob.dateString() + "(CC)" + " opened");
-        } else {
-            System.out.println();
+                    dob.dateString() + "(CC)" + " opened.");
         }
     }
     public void openSavings(String firstName, String lastName, Date dob,
@@ -191,7 +184,10 @@ public class TransactionManager {
         else if (loyalty.equals(NOT_LOYAL)) {
             newSavings.setIsLoyal(false);
         }
-        accountDatabase.open(newSavings);
+        if(accountDatabase.open(newSavings)){
+            System.out.println(firstName+" "+ lastName + " " +
+                    dob.dateString() + "(S)" + " opened.");
+        }
     }
     public void openMoneyMarket(String firstName, String lastName, Date dob,
                                 double initialDeposit) {
@@ -200,9 +196,10 @@ public class TransactionManager {
         }
         Profile newProfile = new Profile(firstName, lastName, dob);
         MoneyMarket newMoneyMarket = new MoneyMarket(newProfile, initialDeposit, true);
-        accountDatabase.open(newMoneyMarket);
+        if(accountDatabase.open(newMoneyMarket)){
+            System.out.println(firstName+" "+ lastName + " " +
+                    dob.dateString() + "(MM)" + " opened.");
+        }
     }
-
-
 
 }
