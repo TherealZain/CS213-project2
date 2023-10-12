@@ -80,7 +80,7 @@ public class TransactionManager {
     }
 
     private void handleCCommand(StringTokenizer tokenizer) {
-
+test
     }
 
     private void handleDCommand(StringTokenizer tokenizer) {
