@@ -21,7 +21,8 @@ public enum Campus {
                 return campus;
             }
         }
-        return null;  // or you can throw an IllegalArgumentException
+        return null;
+
     }
 
 }

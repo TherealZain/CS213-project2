@@ -45,7 +45,7 @@ public class Checking extends Account {
     @Override
     public boolean equals(Object obj){
         if (this == obj) return true;
-        if (obj == null || getClass() != obj.getClass()) return false;
+        if (obj == null || !(obj instanceof Checking)) return false;
         Checking checking = (Checking) obj;
         return checking.holder.equals(holder);
     }

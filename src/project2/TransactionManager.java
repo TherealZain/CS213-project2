@@ -1,5 +1,6 @@
 package project2;
 
+import java.util.Calendar;
 import java.util.Scanner;
 import java.util.StringTokenizer;
 
@@ -30,6 +31,7 @@ public class TransactionManager {
             StringTokenizer tokenizer = new StringTokenizer(command);
             String firstToken = tokenizer.nextToken();
             switch (firstToken) {
+
                 case "Q" -> isRunning = false;
                 case "O" -> handleOCommand(tokenizer);
                 case "C" -> handleCCommand(tokenizer);
@@ -56,6 +58,14 @@ public class TransactionManager {
         String lastName = tokenizer.nextToken();
         String dateOfBirth = tokenizer.nextToken();
         Date dob = parseDate(dateOfBirth);
+        if(!(dob.isValid())){
+            System.out.println("DOB invalid: " + dob.dateString()
+                    +" not a valid calendar date!");
+        }
+        if(futureDateCheck(dob)){
+            System.out.println("DOB invalid: " + dob.dateString()
+                    +" cannot be today or a future day.");
+        }
         String initialDepositString = tokenizer.nextToken();
         double initialDeposit;
         if (isValidInitialDeposit(initialDepositString)) {
@@ -111,13 +121,34 @@ public class TransactionManager {
     private Date parseDate(String dateOfBirth) {
         String[] dateComponents = dateOfBirth.split("/");
         if (dateComponents.length == 3) {
+
             int year = Integer.parseInt(dateComponents[2]);
             int month = Integer.parseInt(dateComponents[0]);
             int day = Integer.parseInt(dateComponents[1]);
-
+            Date date = new Date(year, month, day);
             return new Date(year, month, day);
         }
         return null;
+
+    }
+
+    private boolean futureDateCheck(Date date) {
+        Calendar calendar = Calendar.getInstance();
+        int currentYear = calendar.get(Calendar.YEAR);
+        int currentMonth = calendar.get(Calendar.MONTH);
+        currentMonth++;
+        int currentDay = calendar.get(Calendar.DATE);
+
+        if (date.getYear() > currentYear) {
+            return true;
+        } else if (date.getYear() == currentYear) {
+            if (date.getMonth() > currentMonth) {
+                return true;
+            } else if (date.getMonth() == currentMonth) {
+                return date.getDay() >= currentDay;
+            }
+        }
+        return false;
     }
 
     public static boolean isValidInitialDeposit(String initialDepositString) {
@@ -167,6 +198,9 @@ public class TransactionManager {
             System.out.println("Missing data for opening an account.");
         }
         Campus campus = Campus.fromCode(campusCode);
+        if(campus == null){
+            System.out.println("Invalid campus code.");
+        }
         CollegeChecking newCollegeChecking = new CollegeChecking(newProfile, initialDeposit, campus);
 
         if(accountDatabase.open(newCollegeChecking)){

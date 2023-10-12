@@ -18,6 +18,7 @@ public class AccountDatabase {
         for (int i = 0; i < numAcct; i++) {
             if (accounts[i].equals(account)) {
                 index = i;
+                break;
             }
         }
         return index;

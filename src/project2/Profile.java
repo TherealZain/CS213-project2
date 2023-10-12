@@ -4,6 +4,7 @@ public class Profile implements Comparable<Profile>{
 private String fname;
 private String lname;
 private Date dob;
+private static final int EQUAL_CONDITION = 0;
 
     public Profile(String firstName, String lastName, Date dateOfBirth) {
         this.fname = firstName;
@@ -21,6 +22,17 @@ private Date dob;
 
     public Date getDob() {
         return dob;
+    }
+
+    @Override
+    public boolean equals(Object obj){
+        if(obj instanceof Profile){
+            Profile o = (Profile) obj;
+            return fname.equals(o.fname) && lname.equals(o.lname)
+                    && dob.compareTo(o.dob) == EQUAL_CONDITION;
+        }
+        return false;
+
     }
 
     @Override
