@@ -151,8 +151,12 @@ public class TransactionManager {
         Checking newChecking = new Checking(newProfile, initialDeposit);
         // check if CC or C in database
         if(accountDatabase.open(newChecking)){
-            System.out.println(firstName+" "+ lastName + " " +
-                    dob.dateString() + "(C)" + " opened.");
+            System.out.println(firstName + " " + lastName + " " +
+                    dob.dateString() + "(C) opened.");
+        }
+        else {
+            System.out.println(firstName + " " + lastName + " " +
+                    dob.dateString() + "(C) is already in the database.");
         }
     }
     public void openCollegeChecking(String firstName, String lastName, Date dob,
@@ -166,8 +170,12 @@ public class TransactionManager {
         CollegeChecking newCollegeChecking = new CollegeChecking(newProfile, initialDeposit, campus);
 
         if(accountDatabase.open(newCollegeChecking)){
-            System.out.println(firstName+" "+ lastName + " " +
-                    dob.dateString() + "(CC)" + " opened.");
+            System.out.println(firstName + " " + lastName + " " +
+                    dob.dateString() + "(CC) opened.");
+        }
+        else {
+            System.out.println(firstName + " " + lastName + " " +
+                    dob.dateString() + "(CC) is already in the database.");
         }
     }
     public void openSavings(String firstName, String lastName, Date dob,
@@ -185,8 +193,12 @@ public class TransactionManager {
             newSavings.setIsLoyal(false);
         }
         if(accountDatabase.open(newSavings)){
-            System.out.println(firstName+" "+ lastName + " " +
-                    dob.dateString() + "(S)" + " opened.");
+            System.out.println(firstName + " " +  lastName + " " +
+                    dob.dateString() + "(S) opened.");
+        }
+        else {
+            System.out.println(firstName + " " + lastName + " " +
+                    dob.dateString() + "(S) is already in the database.");
         }
     }
     public void openMoneyMarket(String firstName, String lastName, Date dob,
@@ -197,8 +209,12 @@ public class TransactionManager {
         Profile newProfile = new Profile(firstName, lastName, dob);
         MoneyMarket newMoneyMarket = new MoneyMarket(newProfile, initialDeposit, true);
         if(accountDatabase.open(newMoneyMarket)){
-            System.out.println(firstName+" "+ lastName + " " +
-                    dob.dateString() + "(MM)" + " opened.");
+            System.out.println(firstName + " " + lastName + " " +
+                    dob.dateString() + "(MM) opened.");
+        }
+        else {
+            System.out.println(firstName + " " + lastName + " " +
+                    dob.dateString() + "(MM) is already in the database.");
         }
     }
 
