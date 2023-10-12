@@ -1,10 +1,11 @@
 package project2;
 
-public class Date {
+public class Date implements Comparable<Date>{
     private int year;
     private int month;
     private int day;
 
+    private static final int MIN_YEAR = 1;
     public static final int JAN = 1;
     public static final int FEB = 2;
     public static final int MAR = 3;
@@ -111,6 +112,10 @@ public class Date {
      */
     public boolean isValid(){
         if (month < JAN || month > DEC) {
+            return false;
+        }
+
+        if(year < MIN_YEAR){
             return false;
         }
 

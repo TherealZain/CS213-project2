@@ -64,9 +64,10 @@ public class AccountDatabase {
             return false;
         }
         Account acct = accounts[index];
-        if (acct.balance < 0) {
+        if ((acct.balance - account.balance) < 0) {
             return false;
         }
+        accounts[index].balance -= account.balance;
         if (acct instanceof MoneyMarket) {
             MoneyMarket mmAccount = (MoneyMarket) acct;
             mmAccount.incrementWithdrawals();
@@ -95,13 +96,12 @@ public class AccountDatabase {
         }
     }
 
-    /** NEED TO FIX **/
     public void deposit(Account account){
         int index = find(account);
         if (index == NOT_FOUND) {
             return;
         }
-        Account acct = accounts[index];
+        accounts[index].balance += account.balance;
     }
     public void printSorted(){
         selectionSortAccountType();

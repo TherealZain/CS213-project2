@@ -47,7 +47,7 @@ public class Checking extends Account {
         if (this == obj) return true;
         if (obj == null || getClass() != obj.getClass()) return false;
         Checking checking = (Checking) obj;
-        return checking.balance == balance || checking.holder.equals(holder);
+        return checking.holder.equals(holder);
     }
 
     @Override
