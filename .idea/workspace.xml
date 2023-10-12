@@ -4,14 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ed48aa7f-7c40-4f53-9b16-e472cc288262" name="Changes" comment="Fixed couple things">
-      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/project2/AccountDatabaseTest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/project2/DateTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/project2.iml" beforeDir="false" afterPath="$PROJECT_DIR$/project2.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/project2/Date.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/project2/Date.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    <list default="true" id="1a874c3a-aeeb-4ae5-b87d-b9e11187eca6" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/src/project2/TransactionManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/project2/TransactionManager.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -19,72 +12,9 @@
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
-  <component name="CodeInsightWorkspaceSettings">
-    <option name="optimizeImportsOnTheFly" value="true" />
-  </component>
-  <component name="FileTemplateManagerImpl">
-    <option name="RECENT_TEMPLATES">
-      <list>
-        <option value="Enum" />
-        <option value="Class" />
-        <option value="JUnit4 Test Class" />
-      </list>
-    </option>
-  </component>
-  <component name="Git.Settings">
-    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
-  </component>
-  <component name="GitHubPullRequestSearchHistory">{
-  &quot;lastFilter&quot;: {
-    &quot;state&quot;: &quot;OPEN&quot;,
-    &quot;assignee&quot;: &quot;TherealZain&quot;
-  }
-}</component>
-  <component name="GithubPullRequestsUISettings">
-    <option name="selectedUrlAndAccountId">
-      <UrlAndAccount>
-        <option name="accountId" value="66eff554-f3e6-4f6c-b608-53d93a33d942" />
-        <option name="url" value="https://github.com/TherealZain/CS213-project2" />
-      </UrlAndAccount>
-    </option>
-  </component>
-  <component name="ProjectColorInfo">{
-  &quot;associatedIndex&quot;: 7
-}</component>
-  <component name="ProjectId" id="2WJ2WbvWiSgRa1qJ12gf5ey7ZEn" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
-  <component name="ProjectViewState">
-    <option name="hideEmptyMiddlePackages" value="true" />
-    <option name="showLibraryContents" value="true" />
-  </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
-
-     "Downloaded.Files.Path.Enabled": "false",
-    "Repository.Attach.Annotations": "false",
-    "Repository.Attach.JavaDocs": "false",
-    "Repository.Attach.Sources": "false",
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary": "JUnit4",
-    "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit4": "",
-    "create.test.in.the.same.root": "true",
-    "git-widget-placeholder": "transaction"
-  }
-}]]></component>
-  <component name="RecentsManager">
-    <key name="CreateTestDialog.Recents.Supers">
-      <recent name="" />
-    </key>
-    <key name="CreateTestDialog.RecentsKey">
-      <recent name="" />
-      <recent name="project2" />
-    </key>
-  </component>
-  <component name="RunManager" selected="JUnit.AccountDatabaseTest">
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
     "git-widget-placeholder": "transaction"
   }
 }]]></component>
@@ -102,134 +32,13 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="AccountDatabaseTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="project2" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="project2.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="project2" />
-      <option name="MAIN_CLASS_NAME" value="project2.AccountDatabaseTest" />
-      <option name="TEST_OBJECT" value="class" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="DateTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="project2" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="project2.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="project2" />
-      <option name="MAIN_CLASS_NAME" value="project2.DateTest" />
-      <option name="TEST_OBJECT" value="class" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="DateTest.testDaysInFeb_NonLeap" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="project2" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="project2.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="project2" />
-      <option name="MAIN_CLASS_NAME" value="project2.DateTest" />
-      <option name="METHOD_NAME" value="testDaysInFeb_NonLeap" />
-      <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="JUnit.AccountDatabaseTest" />
-        <item itemvalue="JUnit.DateTest" />
-        <item itemvalue="JUnit.DateTest.testDaysInFeb_NonLeap" />
         <item itemvalue="Application.RunProject2" />
       </list>
     </recent_temporary>
   </component>
-  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
-    <task active="true" id="Default" summary="Default task">
-      <changelist id="ed48aa7f-7c40-4f53-9b16-e472cc288262" name="Changes" comment="" />
-      <created>1696436399830</created>
-      <option name="number" value="Default" />
-      <option name="presentableId" value="Default" />
-      <updated>1696436399830</updated>
-    </task>
-    <task id="LOCAL-00001" summary="Added classes">
-      <option name="closed" value="true" />
-      <created>1696437411243</created>
-      <option name="number" value="00001" />
-      <option name="presentableId" value="LOCAL-00001" />
-      <option name="project" value="LOCAL" />
-      <updated>1696437411243</updated>
-    </task>
-    <task id="LOCAL-00002" summary="Added classes">
-      <option name="closed" value="true" />
-      <created>1696437491078</created>
-      <option name="number" value="00002" />
-      <option name="presentableId" value="LOCAL-00002" />
-      <option name="project" value="LOCAL" />
-      <updated>1696437491078</updated>
-    </task>
-    <task id="LOCAL-00003" summary="Implemented interest and fee methods">
-      <option name="closed" value="true" />
-      <created>1696477382954</created>
-      <option name="number" value="00003" />
-      <option name="presentableId" value="LOCAL-00003" />
-      <option name="project" value="LOCAL" />
-      <updated>1696477382954</updated>
-    </task>
-    <task id="LOCAL-00004" summary="changes">
-      <option name="closed" value="true" />
-      <created>1696609938565</created>
-      <option name="number" value="00004" />
-      <option name="presentableId" value="LOCAL-00004" />
-      <option name="project" value="LOCAL" />
-      <updated>1696609938565</updated>
-    </task>
-    <task id="LOCAL-00005" summary="changes">
-      <option name="closed" value="true" />
-      <created>1696811682064</created>
-      <option name="number" value="00005" />
-      <option name="presentableId" value="LOCAL-00005" />
-      <option name="project" value="LOCAL" />
-      <updated>1696811682064</updated>
-    </task>
-    <task id="LOCAL-00006" summary="Fixed couple things">
-      <option name="closed" value="true" />
-      <created>1697055086965</created>
-      <option name="number" value="00006" />
-      <option name="presentableId" value="LOCAL-00006" />
-      <option name="project" value="LOCAL" />
-      <updated>1697055086965</updated>
-    </task>
-    <task id="LOCAL-00007" summary="Fixed couple things">
-      <option name="closed" value="true" />
-      <created>1697068131743</created>
-      <option name="number" value="00007" />
-      <option name="presentableId" value="LOCAL-00007" />
-      <option name="project" value="LOCAL" />
-      <updated>1697068131743</updated>
-    </task>
-    <option name="localTasksCounter" value="8" />
     <servers />
-  </component>
-  <component name="VcsManagerConfiguration">
-    <MESSAGE value="Added classes" />
-    <MESSAGE value="Implemented interest and fee methods" />
-    <MESSAGE value="changes" />
-    <MESSAGE value="Fixed couple things" />
-    <option name="LAST_COMMIT_MESSAGE" value="Fixed couple things" />
   </component>
 </project>
