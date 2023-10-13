@@ -220,11 +220,7 @@ public class TransactionManager {
         currentMonth++;
         int currentDay = calendar.get(Calendar.DATE);
         Date currentDate = new Date(currentYear, currentMonth, currentDay);
-        int age = currentYear - date.getYear();
-
-        if (date.compareTo(currentDate) < 0) {
-            age--;
-        }
+        int age = calculateAge(currentDate, date);
         if (age < MIN_AGE_TO_TO_OPEN) {
             System.out.println("DOB invalid: " + date.dateString()
                     + " under 16.");
@@ -236,6 +232,18 @@ public class TransactionManager {
             return false;
         }
         return true;
+    }
+
+    private int calculateAge(Date currentDate, Date ageDate) {
+        int age = currentDate.getYear() - ageDate.getYear();
+
+        if (currentDate.getMonth() < ageDate.getMonth() ||
+                (currentDate.getMonth() == ageDate.getMonth()
+                        && currentDate.getDay() < ageDate.getDay())) {
+            age--;
+        }
+
+        return age;
     }
 
     private boolean isValidDOB(Date dob, String accountType) {

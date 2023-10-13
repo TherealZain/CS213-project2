@@ -4,10 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="1a874c3a-aeeb-4ae5-b87d-b9e11187eca6" name="Changes" comment="Fixed couple things">
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+    <list default="true" id="1a874c3a-aeeb-4ae5-b87d-b9e11187eca6" name="Changes" comment="Added age check">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/project2/AccountDatabase.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/project2/AccountDatabase.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/project2/TransactionManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/project2/TransactionManager.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -42,23 +40,33 @@
     </recent_temporary>
   </component>
   <component name="TaskManager">
+    <task id="LOCAL-00001" summary="Added age check">
+      <option name="closed" value="true" />
+      <created>1697219716655</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1697219716655</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Fixed couple things" />
-    <option name="LAST_COMMIT_MESSAGE" value="Fixed couple things" />
+    <MESSAGE value="Added age check" />
+    <option name="LAST_COMMIT_MESSAGE" value="Added age check" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" type="java-method">
           <url>file://$PROJECT_DIR$/src/project2/TransactionManager.java</url>
-          <line>51</line>
-          <properties class="project2.TransactionManager" method="handleOCommand">
+          <line>215</line>
+          <properties class="project2.TransactionManager" method="ageCheck">
             <option name="EMULATED" value="true" />
             <option name="WATCH_EXIT" value="false" />
           </properties>
-          <option name="timeStamp" value="8" />
+          <option name="timeStamp" value="9" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
