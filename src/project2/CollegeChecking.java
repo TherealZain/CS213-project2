@@ -9,7 +9,6 @@ public class CollegeChecking extends Checking{
         this.campus = campus;
     }
 
-
     @Override
     public double monthlyFee() {
         return 0.0; // No monthly fee for College Checking

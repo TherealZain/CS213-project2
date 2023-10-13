@@ -11,7 +11,6 @@ public class TransactionManager {
     private static final String NOT_LOYAL = "0";
     private static final double ZERO_BALANCE = 0;
     private static final double MIN_AGE_TO_TO_OPEN = 16;
-
     private static final double MAX_AGE_TO_OPEN_CC = 24;
     private boolean isRunning;
     private AccountDatabase accountDatabase;
@@ -242,7 +241,6 @@ public class TransactionManager {
                         && currentDate.getDay() < ageDate.getDay())) {
             age--;
         }
-
         return age;
     }
 
@@ -321,12 +319,12 @@ public class TransactionManager {
 
     public void openCollegeChecking(String fName, String lName, Date dob,
                                     double initialDeposit, StringTokenizer tokenizer) {
-        Profile newProfile = new Profile(fName, lName, dob);
-        String campusCode = tokenizer.nextToken();
-        if (campusCode == null) {
+        if (!tokenizer.hasMoreTokens()) {
             System.out.println("Missing data for opening an account.");
             return;
         }
+        Profile newProfile = new Profile(fName, lName, dob);
+        String campusCode = tokenizer.nextToken();
         Campus campus = Campus.fromCode(campusCode);
         if (campus == null) {
             System.out.println("Invalid campus code.");
@@ -345,17 +343,16 @@ public class TransactionManager {
 
     public void openSavings(String fName, String lName, Date dob,
                             double initialDeposit, StringTokenizer tokenizer) {
-        Profile newProfile = new Profile(fName, lName, dob);
-        Savings newSavings = new Savings(newProfile, initialDeposit);
-        String loyalty = tokenizer.nextToken();
-        if (loyalty == null) {
+        if (!tokenizer.hasMoreTokens()) {
             System.out.println("Missing data for opening an account.");
             return;
-        } else if (loyalty.equals(LOYAL)) {
-            newSavings.setIsLoyal(true);
-        } else if (loyalty.equals(NOT_LOYAL)) {
-            newSavings.setIsLoyal(false);
         }
+        Profile newProfile = new Profile(fName, lName, dob);
+        Savings newSavings = new Savings(newProfile, initialDeposit);
+
+        String loyalty = tokenizer.nextToken();
+        newSavings.setIsLoyal(loyalty.equals(LOYAL));
+
         if (accountDatabase.open(newSavings)) {
             System.out.println(fName + " " + lName + " " +
                     dob.dateString() + "(S) opened.");
@@ -444,23 +441,48 @@ public class TransactionManager {
     public void depositAccount(String fName, String lName, Date dob,
                                Account account, String accountType) {
         accountDatabase.deposit(account);
-        System.out.println(fName + " " + lName + dob.dateString() + "("
+        System.out.println(fName + " " + lName + " " + dob.dateString() + "("
                 + accountType + ") Deposit - balance updated.");
     }
 
-    public void withdrawChecking(String fName, String lname, Date dob, double withdraw) {
-
+    public void withdrawChecking(String fName, String lName, Date dob, double withdraw) {
+        Profile profileToWithdraw = new Profile(fName, lName, dob);
+        Checking accountToWithdraw = new Checking(profileToWithdraw, withdraw);
+        withdrawAccount(fName, lName, dob, accountToWithdraw, withdraw, "C");
     }
 
-    public void withdrawCollegeChecking(String fName, String lname, Date dob, double withdraw) {
-
+    public void withdrawCollegeChecking(String fName, String lName, Date dob, double withdraw) {
+        Profile profileToWithdraw = new Profile(fName, lName, dob);
+        CollegeChecking accountToWithdraw = new CollegeChecking(profileToWithdraw, withdraw, null);
+        withdrawAccount(fName, lName, dob, accountToWithdraw, withdraw, "CC");
     }
 
-    public void withdrawSavings(String fName, String lname, Date dob, double withdraw) {
-
+    public void withdrawSavings(String fName, String lName, Date dob, double withdraw) {
+        Profile profileToWithdraw = new Profile(fName, lName, dob);
+        Savings accountToWithdraw = new Savings(profileToWithdraw, withdraw);
+        withdrawAccount(fName, lName, dob, accountToWithdraw, withdraw, "S");
     }
 
-    public void withdrawMoneyMarket(String fName, String lname, Date dob, double withdraw) {
-
+    public void withdrawMoneyMarket(String fName, String lName, Date dob, double withdraw) {
+        Profile profileToWithdraw = new Profile(fName, lName, dob);
+        MoneyMarket accountToWithdraw = new MoneyMarket(profileToWithdraw, withdraw, true);
+        withdrawAccount(fName, lName, dob, accountToWithdraw, withdraw, "MM");
+    }
+    public void withdrawAccount(String fName, String lName, Date dob,
+                               Account account, double withdraw, String accountType) {
+        if (!accountDatabase.withdraw(account)) {
+            if (withdraw > account.balance) {
+                System.out.println(fName + " " + lName + " " + dob.dateString()
+                        + "(" + accountType + ") " + "Withdraw - " +
+                        "insufficient fund.");
+            }
+            else {
+                System.out.println(fName + " " + lName + " " + dob.dateString()
+                        + "(" + accountType + ") is not in the database.");
+            }
+            return;
+        }
+        System.out.println(fName + " " + lName + " " + dob.dateString() + "("
+                + accountType + ") Withdraw - balance updated.");
     }
 }

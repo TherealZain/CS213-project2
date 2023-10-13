@@ -5,7 +5,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="1a874c3a-aeeb-4ae5-b87d-b9e11187eca6" name="Changes" comment="Added age check">
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/project2/AccountDatabase.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/project2/AccountDatabase.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/project2/CollegeChecking.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/project2/CollegeChecking.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/project2/Profile.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/project2/Profile.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/project2/TransactionManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/project2/TransactionManager.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -16,7 +20,7 @@
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
-    "git-widget-placeholder": "master"
+    "git-widget-placeholder": "transaction"
   }
 }]]></component>
   <component name="RunManager">
@@ -55,20 +59,5 @@
     <MESSAGE value="Fixed couple things" />
     <MESSAGE value="Added age check" />
     <option name="LAST_COMMIT_MESSAGE" value="Added age check" />
-  </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="java-method">
-          <url>file://$PROJECT_DIR$/src/project2/TransactionManager.java</url>
-          <line>215</line>
-          <properties class="project2.TransactionManager" method="ageCheck">
-            <option name="EMULATED" value="true" />
-            <option name="WATCH_EXIT" value="false" />
-          </properties>
-          <option name="timeStamp" value="9" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
   </component>
 </project>
