@@ -121,6 +121,7 @@ public class AccountDatabase {
         for(int i = 0; i < numAcct; i++){
             accounts[i].balance += accounts[i].monthlyInterest();
             accounts[i].balance -= accounts[i].monthlyFee();
+            System.out.println(accounts[i].toString());
         }
     }
 
