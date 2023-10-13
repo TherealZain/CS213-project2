@@ -7,7 +7,6 @@ public class AccountDatabase {
     private int numAcct; //number of accounts in the array
     private static final int NOT_FOUND = -1;
     private static final int STARTING_NUM_ACCT = 0;
-    private static final double MIN_BALANCE_FEE_WAIVED = 2000;
 
     public AccountDatabase(){
         accounts = new Account[INITIAL_CAPACITY];
@@ -65,14 +64,14 @@ public class AccountDatabase {
             return false;
         }
         Account acct = accounts[index];
-        if ((acct.balance - account.balance) < 0) {
+        if (acct.balance > account.balance) {
             return false;
         }
         accounts[index].balance -= account.balance;
         if (acct instanceof MoneyMarket) {
             MoneyMarket mmAccount = (MoneyMarket) acct;
             mmAccount.incrementWithdrawals();
-            if (mmAccount.balance < MIN_BALANCE_FEE_WAIVED) {
+            if (mmAccount.balance < MoneyMarket.MIN_BALANCE_FEE_WAIVED) {
                 mmAccount.isLoyal = false;
             }
           accounts[index] = mmAccount;

@@ -7,21 +7,25 @@ private Date dob;
 private static final int EQUAL_CONDITION = 0;
 
     public Profile(String fName, String lName, Date dob) {
-        this.fname = fName;
-        this.lname = lName;
+        this.fname = fName.toLowerCase();
+        this.lname = lName.toLowerCase();
         this.dob = dob;
     }
 
     public String getFname(){
-        return fname;
+        return capitalize(fname);
     }
 
     public String getLname() {
-        return lname;
+        return capitalize(lname);
     }
 
     public Date getDob() {
         return dob;
+    }
+
+    private String capitalize(String str) {
+        return Character.toUpperCase(str.charAt(0)) + str.substring(1);
     }
 
     @Override

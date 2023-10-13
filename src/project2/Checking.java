@@ -52,7 +52,7 @@ public class Checking extends Account {
 
     @Override
     public int compareTo(Account o) {
-        int typeComparison =this.getClass().getSimpleName().compareTo(o.getClass().getSimpleName());
+        int typeComparison = this.getClass().getSimpleName().compareTo(o.getClass().getSimpleName());
         if(typeComparison > 0){
             return 1;
         }
