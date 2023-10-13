@@ -60,11 +60,11 @@ public class TransactionManager {
         Date dob = parseDate(dateOfBirth);
         if(!(dob.isValid())){
             System.out.println("DOB invalid: " + dob.dateString()
-                    +" not a valid calendar date!");
+                    + " not a valid calendar date!");
         }
         if(futureDateCheck(dob)){
             System.out.println("DOB invalid: " + dob.dateString()
-                    +" cannot be today or a future day.");
+                    + " cannot be today or a future day.");
         }
         String initialDepositString = tokenizer.nextToken();
         double initialDeposit;
@@ -121,11 +121,9 @@ public class TransactionManager {
     private Date parseDate(String dateOfBirth) {
         String[] dateComponents = dateOfBirth.split("/");
         if (dateComponents.length == 3) {
-
             int year = Integer.parseInt(dateComponents[2]);
             int month = Integer.parseInt(dateComponents[0]);
             int day = Integer.parseInt(dateComponents[1]);
-            Date date = new Date(year, month, day);
             return new Date(year, month, day);
         }
         return null;
@@ -152,7 +150,7 @@ public class TransactionManager {
     }
 
     public static boolean isValidInitialDeposit(String initialDepositString) {
-        double initialDeposit = ZERO_BALANCE;
+        double initialDeposit;
         try {
             initialDeposit = Double.parseDouble(initialDepositString);
         } catch (NumberFormatException e) {
