@@ -16,7 +16,6 @@ public class MoneyMarket extends Savings{
         super(holder, balance);
         isLoyal = true;
         this.isLoyal = isLoyal;
-
     }
     @Override
     public String toString() {

@@ -5,12 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="1a874c3a-aeeb-4ae5-b87d-b9e11187eca6" name="Changes" comment="Fixed couple things">
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/project2/AccountDatabase.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/project2/AccountDatabase.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/project2/Campus.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/project2/Campus.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/project2/Checking.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/project2/Checking.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/project2/CollegeChecking.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/project2/CollegeChecking.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/project2/MoneyMarket.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/project2/MoneyMarket.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/project2/Profile.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/project2/Profile.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/project2/TransactionManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/project2/TransactionManager.java" afterDir="false" />
     </list>
@@ -22,7 +18,7 @@
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
-    "git-widget-placeholder": "master"
+    "git-widget-placeholder": "transaction"
   }
 }]]></component>
   <component name="RunManager">
@@ -51,34 +47,5 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Fixed couple things" />
     <option name="LAST_COMMIT_MESSAGE" value="Fixed couple things" />
-  </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="java-method">
-          <url>file://$PROJECT_DIR$/src/project2/AccountDatabase.java</url>
-          <line>37</line>
-          <properties class="project2.AccountDatabase" method="open">
-            <option name="EMULATED" value="true" />
-            <option name="WATCH_EXIT" value="false" />
-          </properties>
-          <option name="timeStamp" value="5" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-method">
-          <url>file://$PROJECT_DIR$/src/project2/TransactionManager.java</url>
-          <line>22</line>
-          <properties class="project2.TransactionManager" method="run">
-            <option name="EMULATED" value="true" />
-            <option name="WATCH_EXIT" value="false" />
-          </properties>
-          <option name="timeStamp" value="6" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/project2/TransactionManager.java</url>
-          <line>195</line>
-          <option name="timeStamp" value="7" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
   </component>
 </project>

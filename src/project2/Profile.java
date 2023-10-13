@@ -6,10 +6,10 @@ private String lname;
 private Date dob;
 private static final int EQUAL_CONDITION = 0;
 
-    public Profile(String firstName, String lastName, Date dateOfBirth) {
-        this.fname = firstName;
-        this.lname = lastName;
-        this.dob = dateOfBirth;
+    public Profile(String fName, String lName, Date dob) {
+        this.fname = fName;
+        this.lname = lName;
+        this.dob = dob;
     }
 
     public String getFname(){
