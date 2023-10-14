@@ -24,6 +24,12 @@ private static final int EQUAL_CONDITION = 0;
         return dob;
     }
 
+    public String getFullName(){
+        return fname + lname;
+    }
+
+
+
     private String capitalize(String str) {
         return Character.toUpperCase(str.charAt(0)) + str.substring(1);
     }
@@ -40,11 +46,23 @@ private static final int EQUAL_CONDITION = 0;
     }
 
     @Override
+    public String toString(){
+        return fname +" " + lname + " " + dob.dateString();
+    }
+
+    @Override
     public int compareTo(Profile o) {
+        if(this.lname.compareTo(o.lname) < 0){
+            return -1;
+        }
         if(this.lname.compareTo(o.lname) > 0){
             return 1;
         }
+
         if(this.fname.compareTo(o.fname) < 0){
+            return -1;
+        }
+        if(this.dob.compareTo(o.dob) < 0){
             return -1;
         }
         if (this.dob.compareTo(o.dob) > 0) {

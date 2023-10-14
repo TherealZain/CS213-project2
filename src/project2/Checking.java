@@ -50,6 +50,7 @@ public class Checking extends Account {
         return checking.holder.equals(holder);
     }
 
+
     @Override
     public int compareTo(Account o) {
         int typeComparison = this.getClass().getSimpleName().compareTo(o.getClass().getSimpleName());

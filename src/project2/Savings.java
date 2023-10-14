@@ -39,7 +39,7 @@ public class Savings extends Account{
         if (this == obj) return true;
         if (obj == null || getClass() != obj.getClass()) return false;
         Savings savings = (Savings) obj;
-        return savings.holder.equals(holder) || savings.isLoyal == isLoyal;
+        return savings.holder.equals(holder) && savings.isLoyal == isLoyal;
     }
 
     @Override
