@@ -7,6 +7,7 @@ import java.util.StringTokenizer;
 public class TransactionManager {
     private static final int MIN_TOKENS_O_D_W = 5;
     private static final int MIN_TOKENS_C = 4;
+    private static final int INITIAL_CAPACITY_CLOSED = 4;
     private static final String LOYAL = "1";
     private static final String NOT_LOYAL = "0";
     private static final double ZERO_BALANCE = 0;
@@ -15,8 +16,11 @@ public class TransactionManager {
     private boolean isRunning;
     private AccountDatabase accountDatabase;
 
+    private Account[] closedAccounts;
+
     public TransactionManager() {
         this.accountDatabase = new AccountDatabase();
+        this.closedAccounts = new Account[INITIAL_CAPACITY_CLOSED];
         isRunning = true;
         System.out.println("Transaction Manager is running.");
     }
@@ -332,7 +336,7 @@ public class TransactionManager {
         }
         CollegeChecking newCollegeChecking = new CollegeChecking(newProfile, initialDeposit, campus);
 
-        if (accountDatabase.open(newCollegeChecking)) {
+         if (accountDatabase.open(newCollegeChecking)) {
             System.out.println(fName + " " + lName + " " +
                     dob.dateString() + "(CC) opened.");
         } else {

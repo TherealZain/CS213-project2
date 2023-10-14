@@ -1,5 +1,11 @@
 package project2;
 
+
+/**
+ * Manages an array-based database of various types of accounts.
+ * The database can grow dynamically and supports basic operations like open, close, deposit, and withdraw.
+ * @author Zain Zulfiqar, Nicholas Yim
+ */
 public class AccountDatabase {
     private static final int INCREMENT_AMOUNT = 4;
     private static final int INITIAL_CAPACITY = 4;
@@ -8,10 +14,19 @@ public class AccountDatabase {
     private static final int NOT_FOUND = -1;
     private static final int STARTING_NUM_ACCT = 0;
 
+    /**
+     * Initializes an empty account database with initial capacity.
+     */
     public AccountDatabase(){
         accounts = new Account[INITIAL_CAPACITY];
         numAcct = STARTING_NUM_ACCT;
     }
+
+    /**
+     * Finds the index of a given account in the database.
+     * @param account The account to find.
+     * @return The index of the account, or NOT_FOUND if not found.
+     */
     private int find(Account account) {
         int index = NOT_FOUND;
         for (int i = 0; i < numAcct; i++) {
@@ -22,6 +37,10 @@ public class AccountDatabase {
         }
         return index;
     }
+
+    /**
+     * Increases the capacity of the account database by a fixed increment.
+     */
     private void grow(){
         Account[] copy = new Account[numAcct + INCREMENT_AMOUNT];
         for(int i = 0; i < numAcct; i++){
@@ -29,11 +48,22 @@ public class AccountDatabase {
         }
         accounts = copy;
 
-    } //increase the capacity by 4
+    }
+
+    /**
+     * Checks if an account exists in the database.
+     * @param account The account to check.
+     * @return true if the account exists, false otherwise.
+     */
     public boolean contains(Account account){
         return find(account) != NOT_FOUND;
     }
 
+    /**
+     * Opens a new account and adds it to the database.
+     * @param account The account to open.
+     * @return true if the account was successfully opened, false otherwise.
+     */
     public boolean open(Account account){
        if(contains(account)){
            return false;
@@ -45,6 +75,12 @@ public class AccountDatabase {
         numAcct++;
         return true;
     }
+
+    /**
+     * Closes an existing account and removes it from the database.
+     * @param account The account to close.
+     * @return true if the account was successfully closed, false otherwise.
+     */
     public boolean close(Account account){
         int removeIndex = find(account);
         if (removeIndex != NOT_FOUND) {
@@ -58,8 +94,13 @@ public class AccountDatabase {
         return false;
     }
 
+    /**
+     * Withdraws an amount from an existing account.
+     * @param account The account from which to withdraw.
+     * @return true if the withdrawal was successful, false otherwise.
+     */
     public boolean withdraw(Account account){
-        int index = find(account);
+        int index = findForTransactions(account);
         if (index == NOT_FOUND) {
             return false;
         }
@@ -79,8 +120,10 @@ public class AccountDatabase {
         return true;
     }
 
-
-
+    /**
+     * Sorts the accounts array based on the account
+     * type using the Selection Sort algorithm.
+     */
     private void selectionSortAccountType() {
         int n = numAcct;
 
@@ -98,28 +141,57 @@ public class AccountDatabase {
         }
     }
 
+    /**
+     * Finds the index of an account that matches the given account for transactions.
+     * @param account The account to find.
+     * @return The index of the matching account, or NOT_FOUND if not found.
+     */
+    private int findForTransactions(Account account){
+        int index = NOT_FOUND;
+        for (int i = 0; i < numAcct; i++) {
+            if (accounts[i].equalsForTransactions(account)) {
+                index = i;
+                break;
+            }
+        }
+        return index;
+    }
 
-
-
+    /**
+     * Deposits the balance into the account if it exists.
+     * @param account The account to deposit into.
+     */
     public void deposit(Account account){
-        int index = find(account);
+        int index = findForTransactions(account);
         if (index == NOT_FOUND) {
             return;
         }
         accounts[index].balance += account.balance;
     }
+
+    /**
+     * Prints the sorted list of accounts.
+     */
     public void printSorted(){
         selectionSortAccountType();
         for (int i = 0; i < numAcct; i++) {
             System.out.println(accounts[i].toString());
         }
     }
+
+    /**
+     * Prints the list of accounts along with their fees.
+     */
     public void printFeesAndInterests(){ //calculate interests/fees
         selectionSortAccountType();
         for(int i = 0; i< numAcct; i++){
             System.out.println(accounts[i].stringWithFees());
         }
     }
+
+    /**
+     * Applies the monthly interest and fees to the accounts and prints the updated balances.
+     */
     public void printUpdatedBalances(){ //apply the interests/fees
         selectionSortAccountType();
         for(int i = 0; i < numAcct; i++){
@@ -129,6 +201,10 @@ public class AccountDatabase {
         }
     }
 
+    /**
+     * Checks if the accounts array is empty.
+     * @return true if empty, false otherwise.
+     */
     public boolean isEmpty(){
         return numAcct == 0;
     }

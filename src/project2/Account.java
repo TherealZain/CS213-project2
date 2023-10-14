@@ -13,5 +13,8 @@ public abstract class Account implements Comparable<Account> {
 
     public abstract String stringWithFees();
 
+
+
+    public abstract boolean equalsForTransactions(Object obj);
 }
 

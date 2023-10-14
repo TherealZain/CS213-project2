@@ -1,39 +1,73 @@
 package project2;
 
+/**
+ * Represents a Profile with first name, last name, and date of birth.
+ * @author Zain Zulfiqar
+ */
 public class Profile implements Comparable<Profile>{
 private String fname;
 private String lname;
 private Date dob;
 private static final int EQUAL_CONDITION = 0;
 
+    /**
+     * Constructs a new Profile.
+     * @param fName First name of the profile.
+     * @param lName Last name of the profile.
+     * @param dob Date of birth of the profile.
+     */
     public Profile(String fName, String lName, Date dob) {
         this.fname = fName.toLowerCase();
         this.lname = lName.toLowerCase();
         this.dob = dob;
     }
 
+    /**
+     * Gets the capitalized first name.
+     * @return Capitalized first name.
+     */
     public String getFname(){
         return capitalize(fname);
     }
 
+    /**
+     * Gets the capitalized last name.
+     * @return Capitalized last name.
+     */
     public String getLname() {
         return capitalize(lname);
     }
 
+    /**
+     * Gets the date of birth.
+     * @return Date of birth.
+     */
     public Date getDob() {
         return dob;
     }
 
+    /**
+     * Gets the full name in lowercase.
+     * @return Full name.
+     */
     public String getFullName(){
         return fname + lname;
     }
 
-
-
+    /**
+     * Capitalizes the first letter of a string.
+     * @param str The string to capitalize.
+     * @return Capitalized string.
+     */
     private String capitalize(String str) {
         return Character.toUpperCase(str.charAt(0)) + str.substring(1);
     }
 
+    /**
+     * Checks if this profile is equal to another object.
+     * @param obj The object to compare.
+     * @return true if equal, false otherwise.
+     */
     @Override
     public boolean equals(Object obj){
         if(obj instanceof Profile){
@@ -45,11 +79,20 @@ private static final int EQUAL_CONDITION = 0;
 
     }
 
+    /**
+     * Returns a string representation of the profile.
+     * @return String representation.
+     */
     @Override
     public String toString(){
         return fname +" " + lname + " " + dob.dateString();
     }
 
+    /**
+     * Compares this profile to another profile.
+     * @param o The profile to compare.
+     * @return -1, 0, or 1 as this profile is less than, equal to, or greater than the specified profile.
+     */
     @Override
     public int compareTo(Profile o) {
         if(this.lname.compareTo(o.lname) < 0){
