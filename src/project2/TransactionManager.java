@@ -4,13 +4,21 @@ import java.util.Calendar;
 import java.util.Scanner;
 import java.util.StringTokenizer;
 
+/**
+ * Takes user commands relating to managing transactions for RU Bank
+ * First checks if user command is valid
+ * Contains separate functionality for commands starting with
+ * O, C, D, WP, PI, UB, and Q
+ * @author Nicholas Yim
+ * @author Zain Zulfiqar
+ */
+
 public class TransactionManager {
     private static final int MIN_TOKENS_O_D_W = 5;
     private static final int MIN_TOKENS_C = 4;
     private static final int INITIAL_CAPACITY_CLOSED = 4;
     private static final String LOYAL = "1";
-    private static final String NOT_LOYAL = "0";
-    private static final double ZERO_BALANCE = 0;
+    private static final double ZERO_QUANTITY = 0;
     private static final double MIN_AGE_TO_TO_OPEN = 16;
     private static final double MAX_AGE_TO_OPEN_CC = 24;
     private boolean isRunning;
@@ -18,6 +26,11 @@ public class TransactionManager {
 
     private Account[] closedAccounts;
 
+    /**
+     * Instantiates new account database for all open accounts and
+     * a closed accounts array to keep track of closed accounts.
+     * Sets isRunning to true to receive inputs.
+     */
     public TransactionManager() {
         this.accountDatabase = new AccountDatabase();
         this.closedAccounts = new Account[INITIAL_CAPACITY_CLOSED];
@@ -25,6 +38,10 @@ public class TransactionManager {
         System.out.println("Transaction Manager is running.");
     }
 
+    /**
+     * Initiates scanner and begins program
+     * Continuously reads command lines from console until "Q" command is entered
+     */
     public void run() {
         Scanner scanner = new Scanner(System.in);
 
@@ -52,6 +69,10 @@ public class TransactionManager {
         scanner.close();
     }
 
+    /**
+     * Handles "O" command
+     * @param tokenizer
+     */
     private void handleOCommand(StringTokenizer tokenizer) {
         if (tokenizer.countTokens() < MIN_TOKENS_O_D_W) {
             System.out.println("Missing data for opening an account.");
@@ -273,7 +294,7 @@ public class TransactionManager {
             System.out.println("Not a valid amount.");
             return false;
         }
-        if (initialDeposit <= ZERO_BALANCE) {
+        if (initialDeposit <= ZERO_QUANTITY) {
             System.out.println("Initial deposit cannot be 0 or negative.");
             return false;
         }
@@ -289,7 +310,7 @@ public class TransactionManager {
             return false;
         }
 
-        if (amount <= ZERO_BALANCE) {
+        if (amount <= ZERO_QUANTITY) {
             System.out.println(operationType + " - amount cannot be 0 or negative.");
             return false;
         }
@@ -309,101 +330,86 @@ public class TransactionManager {
 
     public void openChecking(String fName, String lName, Date dob,
                              double initialDeposit) {
-        Profile newProfile = new Profile(fName, lName, dob);
-        Checking newChecking = new Checking(newProfile, initialDeposit);
-        // check if CC or C in database
-        if (accountDatabase.open(newChecking)) {
-            System.out.println(fName + " " + lName + " " +
-                    dob.dateString() + "(C) opened.");
-        } else {
-            System.out.println(fName + " " + lName + " " +
-                    dob.dateString() + "(C) is already in the database.");
-        }
+        Checking newChecking = new Checking(new Profile(fName, lName, dob),
+                initialDeposit);
+        openAccount(fName, lName, dob, newChecking, "C");
     }
 
     public void openCollegeChecking(String fName, String lName, Date dob,
-                                    double initialDeposit, StringTokenizer tokenizer) {
+                                    double initialDeposit, StringTokenizer
+                                            tokenizer) {
         if (!tokenizer.hasMoreTokens()) {
             System.out.println("Missing data for opening an account.");
             return;
         }
-        Profile newProfile = new Profile(fName, lName, dob);
         String campusCode = tokenizer.nextToken();
         Campus campus = Campus.fromCode(campusCode);
         if (campus == null) {
             System.out.println("Invalid campus code.");
             return;
         }
-        CollegeChecking newCollegeChecking = new CollegeChecking(newProfile, initialDeposit, campus);
-
-         if (accountDatabase.open(newCollegeChecking)) {
-            System.out.println(fName + " " + lName + " " +
-                    dob.dateString() + "(CC) opened.");
-        } else {
-            System.out.println(fName + " " + lName + " " +
-                    dob.dateString() + "(CC) is already in the database.");
-        }
+        CollegeChecking newCollegeChecking = new CollegeChecking(new
+                Profile(fName, lName, dob), initialDeposit, campus);
+        openAccount(fName, lName, dob, newCollegeChecking, "CC");
     }
 
-    public void openSavings(String fName, String lName, Date dob,
-                            double initialDeposit, StringTokenizer tokenizer) {
+    public void openSavings(String fName, String lName, Date dob, double
+            initialDeposit, StringTokenizer tokenizer) {
         if (!tokenizer.hasMoreTokens()) {
             System.out.println("Missing data for opening an account.");
             return;
         }
-        Profile newProfile = new Profile(fName, lName, dob);
-        Savings newSavings = new Savings(newProfile, initialDeposit);
-
+        Savings newSavings = new Savings(new Profile(fName, lName, dob),
+                initialDeposit);
         String loyalty = tokenizer.nextToken();
         newSavings.setIsLoyal(loyalty.equals(LOYAL));
-
-        if (accountDatabase.open(newSavings)) {
-            System.out.println(fName + " " + lName + " " +
-                    dob.dateString() + "(S) opened.");
-        } else {
-            System.out.println(fName + " " + lName + " " +
-                    dob.dateString() + "(S) is already in the database.");
-        }
+        openAccount(fName, lName, dob, newSavings, "S");
     }
 
     public void openMoneyMarket(String fName, String lName, Date dob,
                                 double initialDeposit) {
         if (initialDeposit < MoneyMarket.MIN_BALANCE_FEE_WAIVED) {
-            System.out.println("Minimum of $2000 to open a Money Market account.");
+            System.out.println("Minimum of $2000 to open a Money " +
+                    "Market account.");
             return;
         }
-        Profile newProfile = new Profile(fName, lName, dob);
-        MoneyMarket newMoneyMarket = new MoneyMarket(newProfile, initialDeposit, true);
-        if (accountDatabase.open(newMoneyMarket)) {
+        MoneyMarket newMoneyMarket = new MoneyMarket(new
+                Profile(fName, lName, dob), initialDeposit, true);
+        openAccount(fName, lName, dob, newMoneyMarket, "MM");
+    }
+
+    public void openAccount(String fName, String lName, Date dob,
+                            Account account, String accountType) {
+        if (accountDatabase.open(account)) {
             System.out.println(fName + " " + lName + " " +
-                    dob.dateString() + "(MM) opened.");
+                    dob.dateString() + "(" + accountType + ") opened.");
         } else {
-            System.out.println(fName + " " + lName + " " +
-                    dob.dateString() + "(MM) is already in the database.");
+            System.out.println(fName + " " + lName + " " + dob.dateString()
+                    + "(" + accountType + ") is already in the database.");
         }
     }
 
     public void closeChecking(String fName, String lName, Date dob) {
         Profile profileToClose = new Profile(fName, lName, dob);
-        Checking accountToClose = new Checking(profileToClose, ZERO_BALANCE);
+        Checking accountToClose = new Checking(profileToClose, ZERO_QUANTITY);
         closeAccount(fName, lName, dob, accountToClose, "C");
     }
 
     public void closeCollegeChecking(String fName, String lName, Date dob) {
         Profile profileToClose = new Profile(fName, lName, dob);
-        CollegeChecking accountToClose = new CollegeChecking(profileToClose, ZERO_BALANCE, null);
+        CollegeChecking accountToClose = new CollegeChecking(profileToClose, ZERO_QUANTITY, null);
         closeAccount(fName, lName, dob, accountToClose, "CC");
     }
 
     public void closeSavings(String fName, String lName, Date dob) {
         Profile profileToClose = new Profile(fName, lName, dob);
-        Savings accountToClose = new Savings(profileToClose, ZERO_BALANCE);
+        Savings accountToClose = new Savings(profileToClose, ZERO_QUANTITY);
         closeAccount(fName, lName, dob, accountToClose, "S");
     }
 
     public void closeMoneyMarket(String fName, String lName, Date dob) {
         Profile profileToClose = new Profile(fName, lName, dob);
-        MoneyMarket accountToClose = new MoneyMarket(profileToClose, ZERO_BALANCE, true);
+        MoneyMarket accountToClose = new MoneyMarket(profileToClose, ZERO_QUANTITY, true);
         closeAccount(fName, lName, dob, accountToClose, "MM");
     }
 
@@ -473,7 +479,7 @@ public class TransactionManager {
         withdrawAccount(fName, lName, dob, accountToWithdraw, withdraw, "MM");
     }
     public void withdrawAccount(String fName, String lName, Date dob,
-                               Account account, double withdraw, String accountType) {
+                                Account account, double withdraw, String accountType) {
         if (!accountDatabase.withdraw(account)) {
             if (withdraw > account.balance) {
                 System.out.println(fName + " " + lName + " " + dob.dateString()
