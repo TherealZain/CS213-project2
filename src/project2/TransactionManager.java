@@ -427,37 +427,37 @@ public class TransactionManager {
     public void depositChecking(String fName, String lName, Date dob, double deposit) {
         Profile profileToDeposit = new Profile(fName, lName, dob);
         Checking accountToDeposit = new Checking(profileToDeposit, deposit);
-        depositAccount(profileToDeposit, accountToDeposit, "C");
+        depositAccount(fName, lName, dob, accountToDeposit, "C");
     }
 
     public void depositCollegeChecking(String fName, String lName, Date dob, double deposit) {
         Profile profileToDeposit = new Profile(fName, lName, dob);
         CollegeChecking accountToDeposit = new CollegeChecking(profileToDeposit, deposit, null);
-        depositAccount(profileToDeposit, accountToDeposit,"CC");
+        depositAccount(fName, lName, dob , accountToDeposit,"CC");
     }
 
     public void depositSavings(String fName, String lName, Date dob, double deposit) {
         Profile profileToDeposit = new Profile(fName, lName, dob);
         Savings accountToDeposit = new Savings(profileToDeposit, deposit);
-        depositAccount(profileToDeposit, accountToDeposit, "S");
+        depositAccount(fName, lName, dob, accountToDeposit, "S");
     }
 
     public void depositMoneyMarket(String fName, String lName, Date dob, double deposit) {
         Profile profileToDeposit = new Profile(fName, lName, dob);
         MoneyMarket accountToDeposit = new MoneyMarket(profileToDeposit, deposit, true);
-        depositAccount(profileToDeposit, accountToDeposit, "M");
+        depositAccount(fName, lName, dob, accountToDeposit, "MM");
     }
 
-    public void depositAccount(Profile profileToDeposit, Account account, String accountType) {
+    public void depositAccount(String fName, String lName, Date dob, Account
+            account, String accountType) {
         if(accountDatabase.containsForTransactions(account)) {
             accountDatabase.deposit(account);
-            System.out.println(profileToDeposit.getFullName() +
-                    " " + profileToDeposit.getDob().dateString() +
+            System.out.println(fName + " " + lName + " " + dob.dateString() +
                     "(" + accountType + ") Deposit - balance updated.");
         } else
-            System.out.println(profileToDeposit.getFullName() + " " +
-                    profileToDeposit.getDob().dateString() + "(CC) " +
-                    "is not in the database");
+            System.out.println(fName + " " + lName + " " +
+                    dob.dateString() + "(" + accountType + ") " +
+                    "is not in the database.");
 
     }
 

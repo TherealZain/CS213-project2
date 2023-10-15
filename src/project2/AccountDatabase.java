@@ -110,14 +110,14 @@ public class AccountDatabase {
         if (acct.balance < withdrawAmt) {
             return false;
         }
-        accounts[index].balance -= withdrawAmt;
+        acct.balance -= withdrawAmt;
         if (acct instanceof MoneyMarket) {
             MoneyMarket mmAccount = (MoneyMarket) acct;
             mmAccount.incrementWithdrawals();
             if (mmAccount.balance < MoneyMarket.MIN_BALANCE_FEE_WAIVED) {
                 mmAccount.isLoyal = false;
             }
-          accounts[index] = mmAccount;
+            accounts[index] = mmAccount;
         }
         return true;
     }
