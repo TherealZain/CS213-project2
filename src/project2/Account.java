@@ -13,8 +13,14 @@ public abstract class Account implements Comparable<Account> {
 
     public abstract String stringWithFees();
 
+    public boolean equalsForTransactions(Object obj){
+        if (this == obj) return true;
+        if (obj == null || obj.getClass() != this.getClass()) return false;
+
+        Account otherAccount = (Account) obj;
+        return this.holder.equals(otherAccount.holder) && this.balance == otherAccount.balance;
+    }
 
 
-    public abstract boolean equalsForTransactions(Object obj);
 }
 

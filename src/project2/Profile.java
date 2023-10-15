@@ -53,7 +53,7 @@ private static final int SUBSTRING_CONSTANT = 1;
      * @return Full name.
      */
     public String getFullName(){
-        return capitalize(fname) + " " + capitalize(lname);
+        return fname + " " + lname;
     }
 
     /**
