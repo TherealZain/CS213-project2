@@ -13,6 +13,11 @@ public abstract class Account implements Comparable<Account> {
 
     public abstract String stringWithFees();
 
+    /**
+     * Checks if accounts are equal to perform transactions
+     * @param obj as Object
+     * @return true if accounts are equal, false if they are not
+     */
     public boolean equalsForTransactions(Object obj){
         if (this == obj) return true;
         if (obj == null || obj.getClass() != this.getClass()) return false;
