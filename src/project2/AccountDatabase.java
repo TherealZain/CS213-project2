@@ -9,10 +9,12 @@ package project2;
 public class AccountDatabase {
     private static final int INCREMENT_AMOUNT = 4;
     private static final int INITIAL_CAPACITY = 4;
-    private Account[] accounts; //list of various types of accounts
-    private int numAcct; //number of accounts in the array
     private static final int NOT_FOUND = -1;
     private static final int STARTING_NUM_ACCT = 0;
+    private static final int MIN_WITHDRAWALS_ALLOWED = 3;
+    private static final int RESET_WITHDRAWAL = 0;
+    private Account[] accounts; //list of various types of accounts
+    private int numAcct; //number of accounts in the array
 
     /**
      * Initializes an empty account database with initial capacity.
@@ -163,14 +165,27 @@ public class AccountDatabase {
      * Deposits the balance into the account if it exists.
      * @param account The account to deposit into.
      */
-    public void deposit(Account account){
+    public void deposit(Account account) {
         int index = findForTransactions(account);
         if (index == NOT_FOUND) {
             return;
         }
         accounts[index].balance += account.balance;
+        Account acct = accounts[index];
+        if (acct instanceof MoneyMarket) {
+            MoneyMarket mmAccount = (MoneyMarket) acct;
+            if (mmAccount.balance >= MoneyMarket.MIN_BALANCE_FEE_WAIVED) {
+                mmAccount.isLoyal = true;
+            }
+            accounts[index] = mmAccount;
+        }
     }
 
+    /**
+     * Checks if account is contained for transactions
+     * @param account to be found
+     * @return true if contained, false if not
+     */
     public boolean containsForTransactions(Account account){
         return findForTransactions(account) != NOT_FOUND;
     }
@@ -203,6 +218,11 @@ public class AccountDatabase {
         for(int i = 0; i < numAcct; i++){
             accounts[i].balance += accounts[i].monthlyInterest();
             accounts[i].balance -= accounts[i].monthlyFee();
+            if(accounts[i] instanceof MoneyMarket){
+                MoneyMarket mmAccount = (MoneyMarket) accounts[i];
+                    mmAccount.setWithdrawal(RESET_WITHDRAWAL);
+                    accounts[i] = mmAccount;
+            }
             System.out.println(accounts[i].toString());
         }
     }

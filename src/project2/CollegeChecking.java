@@ -1,19 +1,40 @@
 package project2;
 
+/**
+ * Represents a college checking account
+ * with specific features like campus code.
+ * This class extends the Checking class and
+ * overrides some of its methods.
+ * @author Zain Zulfiqar, Nicholas Yim
+ */
 public class CollegeChecking extends Checking{
     private Campus campus; //campus code
     private static final double INTEREST_RATE = 0.01; // 1.0% annual interest rate
 
+    /**
+     * Constructs a CollegeChecking object with a profile holder, balance, and campus code.
+     * @param holder the profile of the account holder
+     * @param balance the initial balance
+     * @param campus the campus code
+     */
     public CollegeChecking(Profile holder, double balance, Campus campus) {
         super(holder, balance);
         this.campus = campus;
     }
 
+    /**
+     * Calculates the monthly fee for the college checking account.
+     * @return 0.0 as there is no monthly fee for College Checking
+     */
     @Override
     public double monthlyFee() {
         return 0.0; // No monthly fee for College Checking
     }
 
+    /**
+     * Generates a string representation of the CollegeChecking object.
+     * @return a formatted string containing account details
+     */
     @Override
     public String toString() {
         return String.format("%s::%s",
@@ -21,6 +42,10 @@ public class CollegeChecking extends Checking{
                 campus.toString());
     }
 
+    /**
+     * Generates a string representation of the CollegeChecking object with fees.
+     * @return a formatted string containing account details and fees
+     */
     public String stringWithFees(){
         String feeStr = String.format("$%.2f", monthlyFee());
         String interestStr = String.format("$%.2f", monthlyInterest());
@@ -30,6 +55,11 @@ public class CollegeChecking extends Checking{
                 balanceStr, campus, feeStr, interestStr);
     }
 
+    /**
+     * Checks if two CollegeChecking objects are equal.
+     * @param obj the object to compare with
+     * @return true if equal, false otherwise
+     */
     @Override
     public boolean equals(Object obj) {
         if (this == obj) return true;
@@ -37,6 +67,11 @@ public class CollegeChecking extends Checking{
         return super.equals(obj);
     }
 
+    /**
+     * Checks if two CollegeChecking objects are equal for transactions.
+     * @param obj the object to compare with
+     * @return true if equal, false otherwise
+     */
     @Override
     public boolean equalsForTransactions(Object obj){
         if (this == obj) return true;
@@ -44,6 +79,11 @@ public class CollegeChecking extends Checking{
         return super.equals(obj);
     }
 
+    /**
+     * Compares two CollegeChecking objects for sorting.
+     * @param o the object to compare with
+     * @return an integer representing the comparison result
+     */
     @Override
     public int compareTo(Account o){
         int superComparison = super.compareTo(o);

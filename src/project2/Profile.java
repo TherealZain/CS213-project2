@@ -108,6 +108,9 @@ private static final int SUBSTRING_CONSTANT = 1;
         if(this.fname.compareTo(o.fname) < 0){
             return -1;
         }
+        if(this.fname.compareTo(o.fname) > 0){
+            return 1;
+        }
         if(this.dob.compareTo(o.dob) < 0){
             return -1;
         }
