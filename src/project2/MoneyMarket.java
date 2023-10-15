@@ -43,6 +43,7 @@ public class MoneyMarket extends Savings{
         return withdrawal == mmAccount.withdrawal;
     }
 
+    @Override
     public boolean equalsForTransactions(Object obj){
         if (this == obj) return true;
         if (obj == null || obj.getClass() != this.getClass()) return false;

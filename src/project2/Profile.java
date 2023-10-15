@@ -9,6 +9,8 @@ private String fname;
 private String lname;
 private Date dob;
 private static final int EQUAL_CONDITION = 0;
+private static final int FIRST_INDEX_OF_STRING = 0;
+private static final int SUBSTRING_CONSTANT = 1;
 
     /**
      * Constructs a new Profile.
@@ -51,7 +53,7 @@ private static final int EQUAL_CONDITION = 0;
      * @return Full name.
      */
     public String getFullName(){
-        return fname + lname;
+        return capitalize(fname) + " " + capitalize(lname);
     }
 
     /**
@@ -60,7 +62,8 @@ private static final int EQUAL_CONDITION = 0;
      * @return Capitalized string.
      */
     private String capitalize(String str) {
-        return Character.toUpperCase(str.charAt(0)) + str.substring(1);
+        return Character.toUpperCase(str.charAt(FIRST_INDEX_OF_STRING))
+                + str.substring(SUBSTRING_CONSTANT);
     }
 
     /**

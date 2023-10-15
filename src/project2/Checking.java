@@ -89,6 +89,7 @@ public class Checking extends Account {
      * @param obj The object to compare.
      * @return true if equal, false otherwise.
      */
+    @Override
     public boolean equalsForTransactions(Object obj){
         if (this == obj) return true;
         if (obj == null || obj.getClass() != this.getClass()) return false;

@@ -82,7 +82,7 @@ public class AccountDatabase {
      * @return true if the account was successfully closed, false otherwise.
      */
     public boolean close(Account account){
-        int removeIndex = find(account);
+        int removeIndex = findForTransactions(account);
         if (removeIndex != NOT_FOUND) {
             for (int i = removeIndex; i < numAcct - 1; i++) {
                 accounts[i] = accounts[i + 1];
@@ -101,14 +101,16 @@ public class AccountDatabase {
      */
     public boolean withdraw(Account account){
         int index = findForTransactions(account);
+        double withdrawAmt = account.balance;
         if (index == NOT_FOUND) {
             return false;
         }
         Account acct = accounts[index];
-        if (acct.balance > account.balance) {
+        account.balance = accounts[index].balance;
+        if (acct.balance < withdrawAmt) {
             return false;
         }
-        accounts[index].balance -= account.balance;
+        accounts[index].balance -= withdrawAmt;
         if (acct instanceof MoneyMarket) {
             MoneyMarket mmAccount = (MoneyMarket) acct;
             mmAccount.incrementWithdrawals();
@@ -167,6 +169,10 @@ public class AccountDatabase {
             return;
         }
         accounts[index].balance += account.balance;
+    }
+
+    public boolean containsForTransactions(Account account){
+        return findForTransactions(account) != NOT_FOUND;
     }
 
     /**

@@ -42,6 +42,7 @@ public class Savings extends Account{
         return savings.holder.equals(holder) && savings.isLoyal == isLoyal;
     }
 
+    @Override
     public boolean equalsForTransactions(Object obj){
         if (this == obj) return true;
         if (obj == null || obj.getClass() != this.getClass()) return false;
