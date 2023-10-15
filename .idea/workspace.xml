@@ -5,12 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="1a874c3a-aeeb-4ae5-b87d-b9e11187eca6" name="Changes" comment="Added comments and fixed other things">
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/project2/Account.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/project2/Account.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/project2/AccountDatabase.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/project2/AccountDatabase.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/project2/MoneyMarket.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/project2/MoneyMarket.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/project2/Profile.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/project2/Profile.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/project2/TransactionManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/project2/TransactionManager.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -86,20 +82,5 @@
     <MESSAGE value="Fixed sorting" />
     <MESSAGE value="Added comments and fixed other things" />
     <option name="LAST_COMMIT_MESSAGE" value="Added comments and fixed other things" />
-  </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="java-method">
-          <url>file://$PROJECT_DIR$/src/project2/TransactionManager.java</url>
-          <line>152</line>
-          <properties class="project2.TransactionManager" method="handleWCommand">
-            <option name="EMULATED" value="true" />
-            <option name="WATCH_EXIT" value="false" />
-          </properties>
-          <option name="timeStamp" value="13" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
   </component>
 </project>

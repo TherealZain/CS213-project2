@@ -71,7 +71,7 @@ public class TransactionManager {
 
     /**
      * Handles "O" command
-     * @param tokenizer
+     * @param tokenizer as StringTokenizer
      */
     private void handleOCommand(StringTokenizer tokenizer) {
         if (tokenizer.countTokens() < MIN_TOKENS_O_D_W) {
@@ -175,6 +175,13 @@ public class TransactionManager {
 
     }
 
+    /**
+     * Handles "P" command whether account database is empty or not.
+     * Prints entire account database sorted by account type and profile
+     * if account database is not empty.
+     * Prints error message if account database is empty.
+     * @param tokenizer as StringTokenizer
+     */
     private void handlePCommand(StringTokenizer tokenizer) {
         if (!(accountDatabase.isEmpty())) {
             System.out.println();
@@ -186,6 +193,13 @@ public class TransactionManager {
 
     }
 
+    /**
+     * Handles "PI" command whether account database is empty or not.
+     * Prints entire account database sorted as in "P" command, along with
+     * fees and monthly interests if account database is not empty.
+     * Prints error message if account database is empty.
+     * @param tokenizer as StringTokenizer
+     */
     private void handlePICommand(StringTokenizer tokenizer) {
         if (!(accountDatabase.isEmpty())) {
             System.out.println();
@@ -196,6 +210,14 @@ public class TransactionManager {
         } else System.out.println("Account Database is empty!");
     }
 
+    /**
+     * Handles "UB" command whether account database is empty or not.
+     * Updates the account balance for all accounts by applying fees and
+     * interests earned and prints entire account database if account database
+     * is not empty.
+     * Prints error message if account database is empty.
+     * @param tokenizer as StringTokenizer
+     */
     private void handleUBCommand(StringTokenizer tokenizer) {
         if (!(accountDatabase.isEmpty())) {
             System.out.println();
@@ -206,8 +228,14 @@ public class TransactionManager {
         } else System.out.println("Account Database is empty!");
     }
 
-    private Date parseDate(String dateOfBirth) {
-        String[] dateComponents = dateOfBirth.split("/");
+    /**
+     * Parses date string from command line and converts to Date object
+     *
+     * @param dateString date of event as String
+     * @return created date as Date object
+     */
+    private Date parseDate(String dateString) {
+        String[] dateComponents = dateString.split("/");
         if (dateComponents.length == 3) {
             int year = Integer.parseInt(dateComponents[2]);
             int month = Integer.parseInt(dateComponents[0]);
@@ -218,6 +246,12 @@ public class TransactionManager {
 
     }
 
+    /**
+     * Checks if birthday user is inputting is in the future
+     *
+     * @param date of birthday
+     * @return true if date is today or in the future, false otherwise
+     */
     private boolean futureDateCheck(Date date) {
         Calendar calendar = Calendar.getInstance();
         int currentYear = calendar.get(Calendar.YEAR);
@@ -237,6 +271,15 @@ public class TransactionManager {
         return false;
     }
 
+    /**
+     * Checks if user has valid date of birth (age) to open an account
+     * User must be at least 16 years old to open any account and must be
+     * under 24 years old to open a College Checking account
+     * Prints error message if date of birth is invalid
+     * @param date as Date
+     * @param accountType as String
+     * @return true if valid DOB, false if invalid DOB
+     */
     private boolean ageCheck(Date date, String accountType){
         Calendar calendar = Calendar.getInstance();
         int currentYear = calendar.get(Calendar.YEAR);
@@ -258,6 +301,12 @@ public class TransactionManager {
         return true;
     }
 
+    /**
+     * Calculates age of user using Calendar class
+     * @param currentDate as Date
+     * @param ageDate as Date
+     * @return age as int
+     */
     private int calculateAge(Date currentDate, Date ageDate) {
         int age = currentDate.getYear() - ageDate.getYear();
 
@@ -269,6 +318,16 @@ public class TransactionManager {
         return age;
     }
 
+    /**
+     * Checks if date of birth is valid or not
+     * Three separate checks: if DOB is a valid calendar date, if it is
+     * not today or a future day, and if age is valid
+     * Prints corresponding error message for valid calendar date
+     * and today/future day.
+     * @param dob as Date
+     * @param accountType as String
+     * @return true if all checks pass, false if any of them fail
+     */
     private boolean isValidDOB(Date dob, String accountType) {
         if (!(dob.isValid())) {
             System.out.println("DOB invalid: " + dob.dateString()
@@ -286,6 +345,14 @@ public class TransactionManager {
         return true;
     }
 
+    /**
+     * Checks if initial deposit is valid
+     * Two separate checks: if deposit is a double and if deposit is
+     * greater than 0
+     * Prints corresponding error message if initial deposit is invalid
+     * @param initialDepositString as String
+     * @return true if all checks pass, false if any of them fail
+     */
     public static boolean isValidInitialDeposit(String initialDepositString) {
         double initialDeposit;
         try {
@@ -301,6 +368,15 @@ public class TransactionManager {
         return true;
     }
 
+    /**
+     * Checks if amount (withdraw or deposit) is valid
+     * Two separate checks: if amount is a double and if amount is
+     * greater than 0
+     * Prints corresponding error message if amount is invalid
+     * @param amountString as String
+     * @param operationType as String ("Withdraw" or "Deposit")
+     * @return true if all checks pass, false if any of them fail
+     */
     public static boolean isValidAmount(String amountString, String operationType) {
         double amount;
         try {
@@ -328,6 +404,13 @@ public class TransactionManager {
         }
     }
 
+    /**
+     * Opens Checking account by calling general open account method
+     * @param fName as String
+     * @param lName as String
+     * @param dob as Date
+     * @param initialDeposit as double
+     */
     public void openChecking(String fName, String lName, Date dob,
                              double initialDeposit) {
         Checking newChecking = new Checking(new Profile(fName, lName, dob),
@@ -335,6 +418,15 @@ public class TransactionManager {
         openAccount(fName, lName, dob, newChecking, "C");
     }
 
+    /**
+     * Opens College Checking account by calling general open account method
+     * Checks if there is missing data and if the campus code is valid
+     * Prints corresponding error message if any of the checks fail
+     * @param fName as String
+     * @param lName as String
+     * @param dob as Date
+     * @param initialDeposit as double
+     */
     public void openCollegeChecking(String fName, String lName, Date dob,
                                     double initialDeposit, StringTokenizer
                                             tokenizer) {
@@ -353,6 +445,15 @@ public class TransactionManager {
         openAccount(fName, lName, dob, newCollegeChecking, "CC");
     }
 
+    /**
+     * Opens Savings account by calling general open account method
+     * Checks if there is missing data
+     * Prints error message if there is missing data
+     * @param fName as String
+     * @param lName as String
+     * @param dob as Date
+     * @param initialDeposit as double
+     */
     public void openSavings(String fName, String lName, Date dob, double
             initialDeposit, StringTokenizer tokenizer) {
         if (!tokenizer.hasMoreTokens()) {
@@ -366,6 +467,15 @@ public class TransactionManager {
         openAccount(fName, lName, dob, newSavings, "S");
     }
 
+    /**
+     * Opens Money Market account by calling general open account method
+     * Checks if initial deposit it at least 2000
+     * Prints error message if initial deposit is less than 2000
+     * @param fName as String
+     * @param lName as String
+     * @param dob as Date
+     * @param initialDeposit as double
+     */
     public void openMoneyMarket(String fName, String lName, Date dob,
                                 double initialDeposit) {
         if (initialDeposit < MoneyMarket.MIN_BALANCE_FEE_WAIVED) {
@@ -378,6 +488,18 @@ public class TransactionManager {
         openAccount(fName, lName, dob, newMoneyMarket, "MM");
     }
 
+    /**
+     * General open account method to handle opening an account given
+     * identifying parameters
+     * Calls 'open' method and checks if account is already in the database
+     * Prints message indicating if account is opened or if it is already
+     * in the database
+     * @param fName as String
+     * @param lName as String
+     * @param dob as Date
+     * @param account as Account
+     * @param accountType as String
+     */
     public void openAccount(String fName, String lName, Date dob,
                             Account account, String accountType) {
         if (accountDatabase.open(account)) {
@@ -389,30 +511,66 @@ public class TransactionManager {
         }
     }
 
+    /**
+     * Closes Checking account by calling general close account method
+     * @param fName as String
+     * @param lName as String
+     * @param dob as Date
+     */
     public void closeChecking(String fName, String lName, Date dob) {
         Profile profileToClose = new Profile(fName, lName, dob);
         Checking accountToClose = new Checking(profileToClose, ZERO_QUANTITY);
         closeAccount(fName, lName, dob, accountToClose, "C");
     }
 
+    /**
+     * Closes College Checking account by calling general close account method
+     * @param fName as String
+     * @param lName as String
+     * @param dob as Date
+     */
     public void closeCollegeChecking(String fName, String lName, Date dob) {
         Profile profileToClose = new Profile(fName, lName, dob);
         CollegeChecking accountToClose = new CollegeChecking(profileToClose, ZERO_QUANTITY, null);
         closeAccount(fName, lName, dob, accountToClose, "CC");
     }
 
+    /**
+     * Closes Savings account by calling general close account method
+     * @param fName as String
+     * @param lName as String
+     * @param dob as Date
+     */
     public void closeSavings(String fName, String lName, Date dob) {
         Profile profileToClose = new Profile(fName, lName, dob);
         Savings accountToClose = new Savings(profileToClose, ZERO_QUANTITY);
         closeAccount(fName, lName, dob, accountToClose, "S");
     }
 
+    /**
+     * Closes Money Market account by calling general close account method
+     * @param fName as String
+     * @param lName as String
+     * @param dob as Date
+     */
     public void closeMoneyMarket(String fName, String lName, Date dob) {
         Profile profileToClose = new Profile(fName, lName, dob);
         MoneyMarket accountToClose = new MoneyMarket(profileToClose, ZERO_QUANTITY, true);
         closeAccount(fName, lName, dob, accountToClose, "MM");
     }
 
+    /**
+     * General close account method to handle closing an account given
+     * identifying parameters
+     * Calls 'close' method and checks if account is in database
+     * Prints message indicating if account has been closed or if is
+     * not in the database
+     * @param fName as String
+     * @param lName as String
+     * @param dob as Date
+     * @param account as Account
+     * @param accountType as String
+     */
     public void closeAccount(String fName, String lName, Date dob,
                              Account account, String accountType) {
         if (accountDatabase.close(account)) {
@@ -424,30 +582,76 @@ public class TransactionManager {
         }
     }
 
+    /**
+     * Deposits value into Checking account by calling general deposit
+     * account method
+     * @param fName as String
+     * @param lName as String
+     * @param dob as Date
+     * @param deposit as double
+     */
     public void depositChecking(String fName, String lName, Date dob, double deposit) {
         Profile profileToDeposit = new Profile(fName, lName, dob);
         Checking accountToDeposit = new Checking(profileToDeposit, deposit);
         depositAccount(fName, lName, dob, accountToDeposit, "C");
     }
 
+    /**
+     * Deposits value into College Checking account by calling general
+     * deposit account method
+     * @param fName as String
+     * @param lName as String
+     * @param dob as Date
+     * @param deposit as double
+     */
     public void depositCollegeChecking(String fName, String lName, Date dob, double deposit) {
         Profile profileToDeposit = new Profile(fName, lName, dob);
         CollegeChecking accountToDeposit = new CollegeChecking(profileToDeposit, deposit, null);
         depositAccount(fName, lName, dob , accountToDeposit,"CC");
     }
 
+
+    /**
+     * Deposits value into Savings account by calling general deposit
+     * account method
+     * @param fName as String
+     * @param lName as String
+     * @param dob as Date
+     * @param deposit as double
+     */
     public void depositSavings(String fName, String lName, Date dob, double deposit) {
         Profile profileToDeposit = new Profile(fName, lName, dob);
         Savings accountToDeposit = new Savings(profileToDeposit, deposit);
         depositAccount(fName, lName, dob, accountToDeposit, "S");
     }
 
+
+    /**
+     * Deposits value into Money Market account by calling general deposit
+     * account method
+     * @param fName as String
+     * @param lName as String
+     * @param dob as Date
+     * @param deposit as double
+     */
     public void depositMoneyMarket(String fName, String lName, Date dob, double deposit) {
         Profile profileToDeposit = new Profile(fName, lName, dob);
         MoneyMarket accountToDeposit = new MoneyMarket(profileToDeposit, deposit, true);
         depositAccount(fName, lName, dob, accountToDeposit, "MM");
     }
 
+    /**
+     * General deposit account to handle depositing value into an account
+     * given identifying parameters
+     * Checks if account is in account database and calls 'deposit' method
+     * Prints message indicating if deposit is successful or if the account
+     * is not in the database
+     * @param fName as String
+     * @param lName as String
+     * @param dob as Date
+     * @param account as Account
+     * @param accountType as String
+     */
     public void depositAccount(String fName, String lName, Date dob, Account
             account, String accountType) {
         if(accountDatabase.containsForTransactions(account)) {
@@ -461,29 +665,77 @@ public class TransactionManager {
 
     }
 
+    /**
+     * Withdraws value from Checking account by calling general withdraw
+     * account method
+     * @param fName as String
+     * @param lName as String
+     * @param dob as Date
+     * @param withdraw as double
+     */
     public void withdrawChecking(String fName, String lName, Date dob, double withdraw) {
         Profile profileToWithdraw = new Profile(fName, lName, dob);
         Checking accountToWithdraw = new Checking(profileToWithdraw, withdraw);
         withdrawAccount(fName, lName, dob, accountToWithdraw, withdraw, "C");
     }
 
+    /**
+     * Withdraws value from College Checking account by calling general
+     * withdraw account method
+     * @param fName as String
+     * @param lName as String
+     * @param dob as Date
+     * @param withdraw as double
+     */
     public void withdrawCollegeChecking(String fName, String lName, Date dob, double withdraw) {
         Profile profileToWithdraw = new Profile(fName, lName, dob);
         CollegeChecking accountToWithdraw = new CollegeChecking(profileToWithdraw, withdraw, null);
         withdrawAccount(fName, lName, dob, accountToWithdraw, withdraw, "CC");
     }
 
+    /**
+     * Withdraws value from Savings account by calling general withdraw
+     * account method
+     * @param fName as String
+     * @param lName as String
+     * @param dob as Date
+     * @param withdraw as double
+     */
     public void withdrawSavings(String fName, String lName, Date dob, double withdraw) {
         Profile profileToWithdraw = new Profile(fName, lName, dob);
         Savings accountToWithdraw = new Savings(profileToWithdraw, withdraw);
         withdrawAccount(fName, lName, dob, accountToWithdraw, withdraw, "S");
     }
 
+    /**
+     * Withdraws value from Money Market account by calling general withdraw
+     * account method
+     * @param fName as String
+     * @param lName as String
+     * @param dob as Date
+     * @param withdraw as double
+     */
     public void withdrawMoneyMarket(String fName, String lName, Date dob, double withdraw) {
         Profile profileToWithdraw = new Profile(fName, lName, dob);
         MoneyMarket accountToWithdraw = new MoneyMarket(profileToWithdraw, withdraw, true);
         withdrawAccount(fName, lName, dob, accountToWithdraw, withdraw, "MM");
     }
+
+    /**
+     * General withdraw account method to handle withdrawing value from an
+     * account given identifying parameters
+     * Calls 'withdraw' method and performs two checks (insufficient fund
+     * and not in database) then performs the withdrawal action if account and
+     * withdraw value are valid
+     * Prints message indicating to specific error or indicating if withdrawal
+     * is successful
+     * @param fName as String
+     * @param lName as String
+     * @param dob as Date
+     * @param account as Account
+     * @param withdraw as double
+     * @param accountType as String
+     */
     public void withdrawAccount(String fName, String lName, Date dob,
                                 Account account, double withdraw, String accountType) {
         if (!accountDatabase.withdraw(account)) {
