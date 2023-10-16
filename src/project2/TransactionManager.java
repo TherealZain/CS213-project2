@@ -185,7 +185,7 @@ public class TransactionManager {
     private void handlePCommand(StringTokenizer tokenizer) {
         if (!(accountDatabase.isEmpty())) {
             System.out.println();
-            System.out.println("Accounts sorted by account type and profile.");
+            System.out.println("*Accounts sorted by account type and profile.");
             accountDatabase.printSorted();
             System.out.println("*end of list.");
             System.out.println();
@@ -391,17 +391,6 @@ public class TransactionManager {
             return false;
         }
         return true;
-    }
-
-
-    public static boolean isValidCampus(String campusCode) {
-        try {
-            Campus.valueOf(campusCode);
-            return true;
-        } catch (IllegalArgumentException e) {
-            System.out.println("Invalid campus code.");
-            return false;
-        }
     }
 
     /**

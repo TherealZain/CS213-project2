@@ -17,8 +17,12 @@ public class MoneyMarket extends Savings{
     private static final double MONTHLY_FEE = 25.0;
     private static final double WITHDRAWALS_OVER_MIN_FEE = 10.0;
     private static final int MIN_WITHDRAWALS_ALLOWED = 3;
+    private static final double ZERO_FEE = 0.0;
     private static final int NUM_MONTHS = 12;
-    private static final int RESET_WITHDRAWALS = 0;
+    private static final int THOUSANDTHS_MULTIPLIER = 1000;
+    private static final int HUNDREDTHS_MULTIPLIER = 100;
+    private static final double THOUSANDTHS = 5.0;
+    private static final int GET_LAST_DIGIT_MODULUS = 10;
 
     /**
      * Constructor for MoneyMarket account.
@@ -121,7 +125,29 @@ public class MoneyMarket extends Savings{
         if(isLoyal){
             return balance*(LOYAL_INTEREST_RATE/NUM_MONTHS);
         }
-        return balance*(INTEREST_RATE/NUM_MONTHS);
+        double interest = balance * (INTEREST_RATE/NUM_MONTHS);
+        return customRound(interest);
+    }
+
+    /**
+     * Custom round function to use for monthly interest
+     * Rounds up when thousands place is greater than 5, rounds down otherwise
+     * @param value as double
+     * @return the rounded value as a double
+     */
+    public double customRound(double value) {
+        int wholePart = (int) value;
+        double fractionalPart = value - wholePart;
+        int thousandthsPlace = (int) (fractionalPart *
+                THOUSANDTHS_MULTIPLIER) % GET_LAST_DIGIT_MODULUS;
+
+        if (thousandthsPlace == THOUSANDTHS) {
+            return ((int) (value * HUNDREDTHS_MULTIPLIER)) /
+                    (double) HUNDREDTHS_MULTIPLIER;
+        } else {
+            return Math.round(value * HUNDREDTHS_MULTIPLIER) /
+                    (double) HUNDREDTHS_MULTIPLIER;
+        }
     }
 
     /**
@@ -137,7 +163,7 @@ public class MoneyMarket extends Savings{
             return MONTHLY_FEE + WITHDRAWALS_OVER_MIN_FEE;
         }
         if(balance >= MIN_BALANCE_FEE_WAIVED){
-            return 0.0;
+            return ZERO_FEE;
         }
 
         return MONTHLY_FEE;
