@@ -78,7 +78,7 @@ public class Checking extends Account {
     @Override
     public boolean equals(Object obj){
         if (this == obj) return true;
-        if (obj == null || !(obj instanceof Checking)) return false;
+        if (obj == null || obj.getClass() != this.getClass()) return false;
         Checking checking = (Checking) obj;
         return checking.holder.equals(holder);
     }
@@ -92,7 +92,7 @@ public class Checking extends Account {
     @Override
     public boolean equalsForTransactions(Object obj){
         if (this == obj) return true;
-        if (obj == null || obj.getClass() != this.getClass()) return false;
+        if (!(obj instanceof Checking)) return false;
         Checking checking = (Checking) obj;
         return checking.holder.equals(holder);
     }
@@ -104,7 +104,8 @@ public class Checking extends Account {
      */
     @Override
     public int compareTo(Account o) {
-        int typeComparison = this.getClass().getSimpleName().compareTo(o.getClass().getSimpleName());
+        int typeComparison = this.getClass().getSimpleName()
+                .compareTo(o.getClass().getSimpleName());
         if(typeComparison > 0){
             return 1;
         }

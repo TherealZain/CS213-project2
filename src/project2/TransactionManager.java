@@ -16,15 +16,12 @@ import java.util.StringTokenizer;
 public class TransactionManager {
     private static final int MIN_TOKENS_O_D_W = 5;
     private static final int MIN_TOKENS_C = 4;
-    private static final int INITIAL_CAPACITY_CLOSED = 4;
     private static final String LOYAL = "1";
     private static final double ZERO_QUANTITY = 0;
     private static final double MIN_AGE_TO_TO_OPEN = 16;
     private static final double MAX_AGE_TO_OPEN_CC = 24;
     private boolean isRunning;
     private AccountDatabase accountDatabase;
-
-    private Account[] closedAccounts;
 
     /**
      * Instantiates new account database for all open accounts and
@@ -33,7 +30,6 @@ public class TransactionManager {
      */
     public TransactionManager() {
         this.accountDatabase = new AccountDatabase();
-        this.closedAccounts = new Account[INITIAL_CAPACITY_CLOSED];
         isRunning = true;
         System.out.println("Transaction Manager is running.");
     }
@@ -44,7 +40,6 @@ public class TransactionManager {
      */
     public void run() {
         Scanner scanner = new Scanner(System.in);
-
         while (isRunning) {
             String command = scanner.nextLine();
             if (command.isEmpty()) {
@@ -85,7 +80,6 @@ public class TransactionManager {
         if (!isValidDOB(dob, accountType)) {
             return;
         }
-
         String initialDepositString = tokenizer.nextToken();
         double initialDeposit;
         if (isValidInitialDeposit(initialDepositString)) {
@@ -111,7 +105,6 @@ public class TransactionManager {
         String fName = tokenizer.nextToken();
         String lName = tokenizer.nextToken();
         Date dob = parseDate(tokenizer.nextToken());
-
         if (futureDateCheck(dob)) {
             System.out.println("DOB invalid: " + dob.dateString()
                     + " cannot be today or a future day.");
@@ -159,7 +152,6 @@ public class TransactionManager {
         String fName = tokenizer.nextToken();
         String lName = tokenizer.nextToken();
         Date dob = parseDate(tokenizer.nextToken());
-
         String withdrawString = tokenizer.nextToken();
         double withdraw;
         if (isValidAmount(withdrawString, "Withdraw")) {
@@ -172,7 +164,6 @@ public class TransactionManager {
             case "S" -> withdrawSavings(fName, lName, dob, withdraw);
             case "MM" -> withdrawMoneyMarket(fName, lName, dob, withdraw);
         }
-
     }
 
     /**
@@ -339,10 +330,7 @@ public class TransactionManager {
                     + " cannot be today or a future day.");
             return false;
         }
-        if(!(ageCheck(dob, accountType))){
-            return false;
-        }
-        return true;
+        return ageCheck(dob, accountType);
     }
 
     /**
@@ -385,7 +373,6 @@ public class TransactionManager {
             System.out.println("Not a valid amount.");
             return false;
         }
-
         if (amount <= ZERO_QUANTITY) {
             System.out.println(operationType + " - amount cannot be 0 or negative.");
             return false;
@@ -499,6 +486,8 @@ public class TransactionManager {
                     + "(" + accountType + ") is already in the database.");
         }
     }
+
+
 
     /**
      * Closes Checking account by calling general close account method

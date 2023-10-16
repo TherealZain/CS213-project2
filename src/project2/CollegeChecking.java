@@ -65,7 +65,7 @@ public class CollegeChecking extends Checking{
     @Override
     public boolean equals(Object obj) {
         if (this == obj) return true;
-        if (obj == null || !(obj instanceof Checking)) return false;
+        if (obj == null || obj.getClass() != this.getClass()) return false;
         return super.equals(obj);
     }
 
@@ -77,8 +77,8 @@ public class CollegeChecking extends Checking{
     @Override
     public boolean equalsForTransactions(Object obj){
         if (this == obj) return true;
-        if (obj == null || obj.getClass() != this.getClass()) return false;
-        return super.equals(obj);
+        if (obj == null || !(obj instanceof Checking) ) return false;
+        return super.equalsForTransactions(obj);
     }
 
     /**

@@ -7,13 +7,10 @@
     <list default="true" id="1a874c3a-aeeb-4ae5-b87d-b9e11187eca6" name="Changes" comment="Added comments and fixed other things">
       <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/project2/Campus.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/project2/Campus.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/project2/AccountDatabase.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/project2/AccountDatabase.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/project2/Checking.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/project2/Checking.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/project2/CollegeChecking.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/project2/CollegeChecking.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/project2/Date.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/project2/Date.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/project2/MoneyMarket.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/project2/MoneyMarket.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/project2/Profile.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/project2/Profile.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/project2/RunProject2.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/project2/RunProject2.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/project2/Savings.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/project2/Savings.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/project2/TransactionManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/project2/TransactionManager.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -24,7 +21,7 @@
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
-    "git-widget-placeholder": "transaction"
+    "git-widget-placeholder": "master"
   }
 }]]></component>
   <component name="RunManager" selected="Application.RunProject2">
@@ -96,7 +93,15 @@
       <option name="project" value="LOCAL" />
       <updated>1697260651878</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="Added comments and fixed other things">
+      <option name="closed" value="true" />
+      <created>1697400864700</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1697400864700</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
@@ -105,5 +110,29 @@
     <MESSAGE value="Fixed sorting" />
     <MESSAGE value="Added comments and fixed other things" />
     <option name="LAST_COMMIT_MESSAGE" value="Added comments and fixed other things" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-method">
+          <url>file://$PROJECT_DIR$/src/project2/AccountDatabase.java</url>
+          <line>186</line>
+          <properties class="project2.AccountDatabase" method="deposit">
+            <option name="EMULATED" value="true" />
+            <option name="WATCH_EXIT" value="false" />
+          </properties>
+          <option name="timeStamp" value="18" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-method">
+          <url>file://$PROJECT_DIR$/src/project2/AccountDatabase.java</url>
+          <line>31</line>
+          <properties class="project2.AccountDatabase" method="find">
+            <option name="EMULATED" value="true" />
+            <option name="WATCH_EXIT" value="false" />
+          </properties>
+          <option name="timeStamp" value="19" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>

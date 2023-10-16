@@ -58,7 +58,8 @@ public class MoneyMarket extends Savings{
         String interestStr = String.format("$%.2f", monthlyInterest());
         String balanceStr = String.format("$%,.2f", balance);
         String loyalty = isLoyal ? "::is loyal" : "";
-        return String.format("Money Market::Savings::%s %s %s::Balance %s%s::withdrawal: %d::fee %s::monthly interest %s",
+        return String.format("Money Market::Savings::%s %s %s::" +
+                        "Balance %s%s::withdrawal: %d::fee %s::monthly interest %s",
                 holder.getFname(), holder.getLname(), holder.getDob().dateString(),
                 balanceStr, loyalty, withdrawal, feeStr, interestStr);
     }
@@ -82,7 +83,7 @@ public class MoneyMarket extends Savings{
         if(obj == null || getClass() != obj.getClass()) return false;
         if(!super.equals(obj)) return false;
         MoneyMarket mmAccount = (MoneyMarket) obj;
-        return withdrawal == mmAccount.withdrawal;
+        return true;
     }
 
     /**

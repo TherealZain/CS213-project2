@@ -31,14 +31,15 @@ public class AccountDatabase {
      */
     private int find(Account account) {
         int index = NOT_FOUND;
-        for (int i = 0; i < numAcct; i++) {
-            if (accounts[i].equals(account)) {
-                index = i;
-                break;
+            for (int i = 0; i < numAcct; i++) {
+                if (accounts[i].equals(account)) {
+                    index = i;
+                    break;
+                }
             }
+            return index;
         }
-        return index;
-    }
+
 
     /**
      * Increases the capacity of the account database by a fixed increment.
@@ -62,14 +63,37 @@ public class AccountDatabase {
     }
 
     /**
+     * Checks if an Checking account exists in the database.
+     * @param checking The checking account to check.
+     * @return true if the account exists, false otherwise.
+     */
+    public boolean contains(Checking checking){
+        int index = NOT_FOUND;
+        for (int i = 0; i < numAcct; i++) {
+            if (accounts[i].equalsForTransactions(checking)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    /**
      * Opens a new account and adds it to the database.
      * @param account The account to open.
      * @return true if the account was successfully opened, false otherwise.
      */
     public boolean open(Account account){
-       if(contains(account)){
-           return false;
-       }
+        if(account.getClass().equals(CollegeChecking.class)){
+            if(contains((CollegeChecking) account)){
+                return false;
+            }
+        } else if (account.getClass().equals(Checking.class)) {
+            if (contains((Checking) account)) {
+                return false;
+            }
+        } else if(contains(account)){
+            return false;
+        }
         if (numAcct >= accounts.length) {
             grow();
         }
@@ -84,7 +108,7 @@ public class AccountDatabase {
      * @return true if the account was successfully closed, false otherwise.
      */
     public boolean close(Account account){
-        int removeIndex = findForTransactions(account);
+        int removeIndex = find(account);
         if (removeIndex != NOT_FOUND) {
             for (int i = removeIndex; i < numAcct - 1; i++) {
                 accounts[i] = accounts[i + 1];
@@ -102,7 +126,7 @@ public class AccountDatabase {
      * @return true if the withdrawal was successful, false otherwise.
      */
     public boolean withdraw(Account account){
-        int index = findForTransactions(account);
+        int index = find(account);
         double withdrawAmt = account.balance;
         if (index == NOT_FOUND) {
             return false;
@@ -153,7 +177,7 @@ public class AccountDatabase {
     private int findForTransactions(Account account){
         int index = NOT_FOUND;
         for (int i = 0; i < numAcct; i++) {
-            if (accounts[i].equalsForTransactions(account)) {
+            if (accounts[i].equals(account)) {
                 index = i;
                 break;
             }
@@ -166,7 +190,7 @@ public class AccountDatabase {
      * @param account The account to deposit into.
      */
     public void deposit(Account account) {
-        int index = findForTransactions(account);
+        int index = find(account);
         if (index == NOT_FOUND) {
             return;
         }
