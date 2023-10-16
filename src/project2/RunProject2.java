@@ -1,5 +1,10 @@
 package project2;
 
+/**
+ * Runs project2 by calling run function in TransactionManager
+ * @author Nicholas Yim
+ * @author Zain Zulfiqar
+ */
 public class RunProject2 {
 
     /**

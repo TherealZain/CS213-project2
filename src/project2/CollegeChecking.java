@@ -37,9 +37,11 @@ public class CollegeChecking extends Checking{
      */
     @Override
     public String toString() {
-        return String.format("%s::%s",
-                super.toString(),
-                campus.toString());
+        String balanceStr = String.format("$%,.2f", balance);
+
+        return String.format("College Checking::%s %s %s::Balance %s::%s",
+                holder.getFname(), holder.getLname(), holder.getDob().dateString(),
+                balanceStr, campus.toString());
     }
 
     /**

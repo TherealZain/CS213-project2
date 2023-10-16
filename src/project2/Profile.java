@@ -3,6 +3,7 @@ package project2;
 /**
  * Represents a Profile with first name, last name, and date of birth.
  * @author Zain Zulfiqar
+ * @author Nicholas Yim
  */
 public class Profile implements Comparable<Profile>{
 private String fname;
@@ -88,7 +89,7 @@ private static final int SUBSTRING_CONSTANT = 1;
      */
     @Override
     public String toString(){
-        return fname +" " + lname + " " + dob.dateString();
+        return fname + " " + lname + " " + dob.dateString();
     }
 
     /**

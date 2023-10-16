@@ -1,5 +1,12 @@
 package project2;
 
+/**
+ * Creates and represents a date of an event
+ * Includes constants day, month, and year
+ * Includes isValid and compareTo methods
+ * @author Nicholas Yim
+ * @author Zain Zulfiqar
+ */
 public class Date implements Comparable<Date>{
     private int year;
     private int month;
