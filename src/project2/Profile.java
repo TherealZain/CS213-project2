@@ -50,14 +50,6 @@ private static final int SUBSTRING_CONSTANT = 1;
     }
 
     /**
-     * Gets the full name in lowercase.
-     * @return Full name.
-     */
-    public String getFullName(){
-        return fname + " " + lname;
-    }
-
-    /**
      * Capitalizes the first letter of a string.
      * @param str The string to capitalize.
      * @return Capitalized string.

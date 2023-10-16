@@ -341,7 +341,7 @@ public class TransactionManager {
      * @param initialDepositString as String
      * @return true if all checks pass, false if any of them fail
      */
-    public static boolean isValidInitialDeposit(String initialDepositString) {
+    private static boolean isValidInitialDeposit(String initialDepositString) {
         double initialDeposit;
         try {
             initialDeposit = Double.parseDouble(initialDepositString);
@@ -365,7 +365,7 @@ public class TransactionManager {
      * @param operationType as String ("Withdraw" or "Deposit")
      * @return true if all checks pass, false if any of them fail
      */
-    public static boolean isValidAmount(String amountString, String operationType) {
+    private static boolean isValidAmount(String amountString, String operationType) {
         double amount;
         try {
             amount = Double.parseDouble(amountString);
@@ -387,7 +387,7 @@ public class TransactionManager {
      * @param dob as Date
      * @param initialDeposit as double
      */
-    public void openChecking(String fName, String lName, Date dob,
+    private void openChecking(String fName, String lName, Date dob,
                              double initialDeposit) {
         Checking newChecking = new Checking(new Profile(fName, lName, dob),
                 initialDeposit);
@@ -403,7 +403,7 @@ public class TransactionManager {
      * @param dob as Date
      * @param initialDeposit as double
      */
-    public void openCollegeChecking(String fName, String lName, Date dob,
+    private void openCollegeChecking(String fName, String lName, Date dob,
                                     double initialDeposit, StringTokenizer
                                             tokenizer) {
         if (!tokenizer.hasMoreTokens()) {
@@ -430,7 +430,7 @@ public class TransactionManager {
      * @param dob as Date
      * @param initialDeposit as double
      */
-    public void openSavings(String fName, String lName, Date dob, double
+    private void openSavings(String fName, String lName, Date dob, double
             initialDeposit, StringTokenizer tokenizer) {
         if (!tokenizer.hasMoreTokens()) {
             System.out.println("Missing data for opening an account.");
@@ -452,7 +452,7 @@ public class TransactionManager {
      * @param dob as Date
      * @param initialDeposit as double
      */
-    public void openMoneyMarket(String fName, String lName, Date dob,
+    private void openMoneyMarket(String fName, String lName, Date dob,
                                 double initialDeposit) {
         if (initialDeposit < MoneyMarket.MIN_BALANCE_FEE_WAIVED) {
             System.out.println("Minimum of $2000 to open a Money " +
@@ -476,7 +476,7 @@ public class TransactionManager {
      * @param account as Account
      * @param accountType as String
      */
-    public void openAccount(String fName, String lName, Date dob,
+    private void openAccount(String fName, String lName, Date dob,
                             Account account, String accountType) {
         if (accountDatabase.open(account)) {
             System.out.println(fName + " " + lName + " " +
@@ -495,7 +495,7 @@ public class TransactionManager {
      * @param lName as String
      * @param dob as Date
      */
-    public void closeChecking(String fName, String lName, Date dob) {
+    private void closeChecking(String fName, String lName, Date dob) {
         Profile profileToClose = new Profile(fName, lName, dob);
         Checking accountToClose = new Checking(profileToClose, ZERO_QUANTITY);
         closeAccount(fName, lName, dob, accountToClose, "C");
@@ -507,7 +507,7 @@ public class TransactionManager {
      * @param lName as String
      * @param dob as Date
      */
-    public void closeCollegeChecking(String fName, String lName, Date dob) {
+    private void closeCollegeChecking(String fName, String lName, Date dob) {
         Profile profileToClose = new Profile(fName, lName, dob);
         CollegeChecking accountToClose = new CollegeChecking(profileToClose, ZERO_QUANTITY, null);
         closeAccount(fName, lName, dob, accountToClose, "CC");
@@ -519,7 +519,7 @@ public class TransactionManager {
      * @param lName as String
      * @param dob as Date
      */
-    public void closeSavings(String fName, String lName, Date dob) {
+    private void closeSavings(String fName, String lName, Date dob) {
         Profile profileToClose = new Profile(fName, lName, dob);
         Savings accountToClose = new Savings(profileToClose, ZERO_QUANTITY);
         closeAccount(fName, lName, dob, accountToClose, "S");
@@ -531,7 +531,7 @@ public class TransactionManager {
      * @param lName as String
      * @param dob as Date
      */
-    public void closeMoneyMarket(String fName, String lName, Date dob) {
+    private void closeMoneyMarket(String fName, String lName, Date dob) {
         Profile profileToClose = new Profile(fName, lName, dob);
         MoneyMarket accountToClose = new MoneyMarket(profileToClose, ZERO_QUANTITY, true);
         closeAccount(fName, lName, dob, accountToClose, "MM");
@@ -549,7 +549,7 @@ public class TransactionManager {
      * @param account as Account
      * @param accountType as String
      */
-    public void closeAccount(String fName, String lName, Date dob,
+    private void closeAccount(String fName, String lName, Date dob,
                              Account account, String accountType) {
         if (accountDatabase.close(account)) {
             System.out.println(fName + " " + lName + " " + dob.dateString()
@@ -568,7 +568,7 @@ public class TransactionManager {
      * @param dob as Date
      * @param deposit as double
      */
-    public void depositChecking(String fName, String lName, Date dob, double deposit) {
+    private void depositChecking(String fName, String lName, Date dob, double deposit) {
         Profile profileToDeposit = new Profile(fName, lName, dob);
         Checking accountToDeposit = new Checking(profileToDeposit, deposit);
         depositAccount(fName, lName, dob, accountToDeposit, "C");
@@ -582,7 +582,7 @@ public class TransactionManager {
      * @param dob as Date
      * @param deposit as double
      */
-    public void depositCollegeChecking(String fName, String lName, Date dob, double deposit) {
+    private void depositCollegeChecking(String fName, String lName, Date dob, double deposit) {
         Profile profileToDeposit = new Profile(fName, lName, dob);
         CollegeChecking accountToDeposit = new CollegeChecking(profileToDeposit, deposit, null);
         depositAccount(fName, lName, dob , accountToDeposit,"CC");
@@ -597,7 +597,7 @@ public class TransactionManager {
      * @param dob as Date
      * @param deposit as double
      */
-    public void depositSavings(String fName, String lName, Date dob, double deposit) {
+    private void depositSavings(String fName, String lName, Date dob, double deposit) {
         Profile profileToDeposit = new Profile(fName, lName, dob);
         Savings accountToDeposit = new Savings(profileToDeposit, deposit);
         depositAccount(fName, lName, dob, accountToDeposit, "S");
@@ -612,7 +612,7 @@ public class TransactionManager {
      * @param dob as Date
      * @param deposit as double
      */
-    public void depositMoneyMarket(String fName, String lName, Date dob, double deposit) {
+    private void depositMoneyMarket(String fName, String lName, Date dob, double deposit) {
         Profile profileToDeposit = new Profile(fName, lName, dob);
         MoneyMarket accountToDeposit = new MoneyMarket(profileToDeposit, deposit, true);
         depositAccount(fName, lName, dob, accountToDeposit, "MM");
@@ -630,7 +630,7 @@ public class TransactionManager {
      * @param account as Account
      * @param accountType as String
      */
-    public void depositAccount(String fName, String lName, Date dob, Account
+    private void depositAccount(String fName, String lName, Date dob, Account
             account, String accountType) {
         if(accountDatabase.containsForTransactions(account)) {
             accountDatabase.deposit(account);
@@ -651,7 +651,7 @@ public class TransactionManager {
      * @param dob as Date
      * @param withdraw as double
      */
-    public void withdrawChecking(String fName, String lName, Date dob, double withdraw) {
+    private void withdrawChecking(String fName, String lName, Date dob, double withdraw) {
         Profile profileToWithdraw = new Profile(fName, lName, dob);
         Checking accountToWithdraw = new Checking(profileToWithdraw, withdraw);
         withdrawAccount(fName, lName, dob, accountToWithdraw, withdraw, "C");
@@ -665,7 +665,7 @@ public class TransactionManager {
      * @param dob as Date
      * @param withdraw as double
      */
-    public void withdrawCollegeChecking(String fName, String lName, Date dob, double withdraw) {
+    private void withdrawCollegeChecking(String fName, String lName, Date dob, double withdraw) {
         Profile profileToWithdraw = new Profile(fName, lName, dob);
         CollegeChecking accountToWithdraw = new CollegeChecking(profileToWithdraw, withdraw, null);
         withdrawAccount(fName, lName, dob, accountToWithdraw, withdraw, "CC");
@@ -679,7 +679,7 @@ public class TransactionManager {
      * @param dob as Date
      * @param withdraw as double
      */
-    public void withdrawSavings(String fName, String lName, Date dob, double withdraw) {
+    private void withdrawSavings(String fName, String lName, Date dob, double withdraw) {
         Profile profileToWithdraw = new Profile(fName, lName, dob);
         Savings accountToWithdraw = new Savings(profileToWithdraw, withdraw);
         withdrawAccount(fName, lName, dob, accountToWithdraw, withdraw, "S");
@@ -693,7 +693,7 @@ public class TransactionManager {
      * @param dob as Date
      * @param withdraw as double
      */
-    public void withdrawMoneyMarket(String fName, String lName, Date dob, double withdraw) {
+    private void withdrawMoneyMarket(String fName, String lName, Date dob, double withdraw) {
         Profile profileToWithdraw = new Profile(fName, lName, dob);
         MoneyMarket accountToWithdraw = new MoneyMarket(profileToWithdraw, withdraw, true);
         withdrawAccount(fName, lName, dob, accountToWithdraw, withdraw, "MM");
@@ -714,7 +714,7 @@ public class TransactionManager {
      * @param withdraw as double
      * @param accountType as String
      */
-    public void withdrawAccount(String fName, String lName, Date dob,
+    private void withdrawAccount(String fName, String lName, Date dob,
                                 Account account, double withdraw, String accountType) {
         if (!accountDatabase.withdraw(account)) {
             if (withdraw > account.balance) {

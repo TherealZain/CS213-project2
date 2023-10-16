@@ -11,7 +11,6 @@ public class AccountDatabase {
     private static final int INITIAL_CAPACITY = 4;
     private static final int NOT_FOUND = -1;
     private static final int STARTING_NUM_ACCT = 0;
-    private static final int MIN_WITHDRAWALS_ALLOWED = 3;
     private static final int RESET_WITHDRAWAL = 0;
     private Account[] accounts; //list of various types of accounts
     private int numAcct; //number of accounts in the array

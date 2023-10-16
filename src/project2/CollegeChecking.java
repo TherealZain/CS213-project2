@@ -9,7 +9,6 @@ package project2;
  */
 public class CollegeChecking extends Checking{
     private Campus campus; //campus code
-    private static final double INTEREST_RATE = 0.01; // 1.0% annual interest rate
 
     /**
      * Constructs a CollegeChecking object with a profile holder, balance, and campus code.
@@ -28,7 +27,7 @@ public class CollegeChecking extends Checking{
      */
     @Override
     public double monthlyFee() {
-        return 0.0; // No monthly fee for College Checking
+        return Savings.ZERO_FEE; // No monthly fee for College Checking
     }
 
     /**
