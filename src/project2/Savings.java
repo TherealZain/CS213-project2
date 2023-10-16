@@ -8,6 +8,7 @@ package project2;
  */
 public class Savings extends Account{
     protected boolean isLoyal; //loyal customer status
+    public static final double ZERO_FEE = 0.0;
     private static final double INTEREST_RATE = 0.04; // 1.0% annual interest rate
     private static final double LOYAL_INTEREST_RATE = 0.0425;
     private static final double MONTHLY_FEE = 25.0;
@@ -131,7 +132,7 @@ public class Savings extends Account{
     @Override
     public double monthlyFee() {
         if(balance >= MIN_BALANCE_FEE_WAIVED){
-            return 0.0;
+            return ZERO_FEE;
         }
         return MONTHLY_FEE;
     }

@@ -17,7 +17,6 @@ public class MoneyMarket extends Savings{
     private static final double MONTHLY_FEE = 25.0;
     private static final double WITHDRAWALS_OVER_MIN_FEE = 10.0;
     private static final int MIN_WITHDRAWALS_ALLOWED = 3;
-    private static final double ZERO_FEE = 0.0;
     private static final int NUM_MONTHS = 12;
     private static final int THOUSANDTHS_MULTIPLIER = 1000;
     private static final int HUNDREDTHS_MULTIPLIER = 100;
@@ -136,7 +135,7 @@ public class MoneyMarket extends Savings{
      * @param value as double
      * @return the rounded value as a double
      */
-    public double customRound(double value) {
+    private double customRound(double value) {
         int wholePart = (int) value;
         double fractionalPart = value - wholePart;
         int thousandthsPlace = (int) (fractionalPart *

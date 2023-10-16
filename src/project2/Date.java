@@ -30,7 +30,6 @@ public class Date implements Comparable<Date>{
     public static final int DAYS_IN_SHORT_MONTH = 30;
     public static final int DAYS_IN_LONG_MONTH = 31;
     public static final int MIN_DAYS_IN_MONTH = 1;
-
     public static final int QUADRENNIAL = 4;
     public static final int CENTENNIAL = 100;
     public static final int QUATERCENTENNIAL = 400;
