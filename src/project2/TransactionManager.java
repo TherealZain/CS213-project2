@@ -96,6 +96,10 @@ public class TransactionManager {
         }
     }
 
+    /**
+     * handles Close command to close accounts
+     * @param tokenizer of command
+     */
     private void handleCCommand(StringTokenizer tokenizer) {
         if (tokenizer.countTokens() < MIN_TOKENS_C) {
             System.out.println("Missing data for closing an account.");
@@ -119,6 +123,10 @@ public class TransactionManager {
         }
     }
 
+    /**
+     * Handles Deposit command to deposit in to accounts
+     * @param tokenizer of command
+     */
     private void handleDCommand(StringTokenizer tokenizer) {
         if (tokenizer.countTokens() < MIN_TOKENS_O_D_W) {
             System.out.println("Missing data for opening an account.");
@@ -143,6 +151,10 @@ public class TransactionManager {
         }
     }
 
+    /**
+     * Handles Withdraw command to withdraw from accounts
+     * @param tokenizer of command
+     */
     private void handleWCommand(StringTokenizer tokenizer) {
         if (tokenizer.countTokens() < MIN_TOKENS_O_D_W) {
             System.out.println("Missing data for opening an account.");
